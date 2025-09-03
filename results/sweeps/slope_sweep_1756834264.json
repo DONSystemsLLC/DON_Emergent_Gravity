@@ -1,0 +1,252 @@
+{
+  "summary": {
+    "kind": "slope",
+    "jobs": 8,
+    "ok": 0,
+    "pass_eps": 0.05,
+    "pass": null,
+    "wall_sec": 0.7043180465698242,
+    "throughput_jobs_per_sec": 11.358504923963922,
+    "mean_slope": null
+  },
+  "grid": {
+    "N": [
+      "160",
+      "192"
+    ],
+    "L": [
+      "80"
+    ],
+    "sigma": [
+      "0.6",
+      "1.0"
+    ],
+    "tau": [
+      "0.15",
+      "0.20"
+    ]
+  },
+  "const": {
+    "dt": "0.05",
+    "warm": "7000",
+    "rmin": "5",
+    "rmax": "20",
+    "masses": [
+      "32",
+      "32",
+      "32",
+      "1.0"
+    ],
+    "timeout_sec": 3600.0
+  },
+  "results": [
+    {
+      "cmd": "\"/Users/donnievanmetre/quantum_reality_computer/.venv/bin/python\" don_emergent_collapse_3d.py --test slope --N 160 --L 80 --sigma 0.6 --tau 0.15 --dt 0.05 --warm 7000 --rmin 5 --rmax 20 --masses \"['32', '32', '32', '1.0']\"",
+      "rc": 1,
+      "dt": 0.24054718017578125,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 624, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 600, in main\n    masses = parse_masses_3d(args.masses, args.L) if \"parse_masses_3d\" in globals() else args.masses\n             ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 311, in parse_masses_3d\n    x,y,z,m = map(float, toks)\n    ^^^^^^^\nValueError: could not convert string to float: \"['32'\"\n",
+      "metrics": {
+        "slope": null
+      },
+      "params": {
+        "N": "160",
+        "L": "80",
+        "sigma": "0.6",
+        "tau": "0.15",
+        "dt": "0.05",
+        "warm": "7000",
+        "rmin": "5",
+        "rmax": "20",
+        "masses": [
+          "32",
+          "32",
+          "32",
+          "1.0"
+        ]
+      }
+    },
+    {
+      "cmd": "\"/Users/donnievanmetre/quantum_reality_computer/.venv/bin/python\" don_emergent_collapse_3d.py --test slope --N 160 --L 80 --sigma 1.0 --tau 0.20 --dt 0.05 --warm 7000 --rmin 5 --rmax 20 --masses \"['32', '32', '32', '1.0']\"",
+      "rc": 1,
+      "dt": 0.2390589714050293,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 624, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 600, in main\n    masses = parse_masses_3d(args.masses, args.L) if \"parse_masses_3d\" in globals() else args.masses\n             ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 311, in parse_masses_3d\n    x,y,z,m = map(float, toks)\n    ^^^^^^^\nValueError: could not convert string to float: \"['32'\"\n",
+      "metrics": {
+        "slope": null
+      },
+      "params": {
+        "N": "160",
+        "L": "80",
+        "sigma": "1.0",
+        "tau": "0.20",
+        "dt": "0.05",
+        "warm": "7000",
+        "rmin": "5",
+        "rmax": "20",
+        "masses": [
+          "32",
+          "32",
+          "32",
+          "1.0"
+        ]
+      }
+    },
+    {
+      "cmd": "\"/Users/donnievanmetre/quantum_reality_computer/.venv/bin/python\" don_emergent_collapse_3d.py --test slope --N 160 --L 80 --sigma 1.0 --tau 0.15 --dt 0.05 --warm 7000 --rmin 5 --rmax 20 --masses \"['32', '32', '32', '1.0']\"",
+      "rc": 1,
+      "dt": 0.240645170211792,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 624, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 600, in main\n    masses = parse_masses_3d(args.masses, args.L) if \"parse_masses_3d\" in globals() else args.masses\n             ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 311, in parse_masses_3d\n    x,y,z,m = map(float, toks)\n    ^^^^^^^\nValueError: could not convert string to float: \"['32'\"\n",
+      "metrics": {
+        "slope": null
+      },
+      "params": {
+        "N": "160",
+        "L": "80",
+        "sigma": "1.0",
+        "tau": "0.15",
+        "dt": "0.05",
+        "warm": "7000",
+        "rmin": "5",
+        "rmax": "20",
+        "masses": [
+          "32",
+          "32",
+          "32",
+          "1.0"
+        ]
+      }
+    },
+    {
+      "cmd": "\"/Users/donnievanmetre/quantum_reality_computer/.venv/bin/python\" don_emergent_collapse_3d.py --test slope --N 160 --L 80 --sigma 0.6 --tau 0.20 --dt 0.05 --warm 7000 --rmin 5 --rmax 20 --masses \"['32', '32', '32', '1.0']\"",
+      "rc": 1,
+      "dt": 0.24225401878356934,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 624, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 600, in main\n    masses = parse_masses_3d(args.masses, args.L) if \"parse_masses_3d\" in globals() else args.masses\n             ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 311, in parse_masses_3d\n    x,y,z,m = map(float, toks)\n    ^^^^^^^\nValueError: could not convert string to float: \"['32'\"\n",
+      "metrics": {
+        "slope": null
+      },
+      "params": {
+        "N": "160",
+        "L": "80",
+        "sigma": "0.6",
+        "tau": "0.20",
+        "dt": "0.05",
+        "warm": "7000",
+        "rmin": "5",
+        "rmax": "20",
+        "masses": [
+          "32",
+          "32",
+          "32",
+          "1.0"
+        ]
+      }
+    },
+    {
+      "cmd": "\"/Users/donnievanmetre/quantum_reality_computer/.venv/bin/python\" don_emergent_collapse_3d.py --test slope --N 192 --L 80 --sigma 0.6 --tau 0.20 --dt 0.05 --warm 7000 --rmin 5 --rmax 20 --masses \"['32', '32', '32', '1.0']\"",
+      "rc": 1,
+      "dt": 0.22754502296447754,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 624, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 600, in main\n    masses = parse_masses_3d(args.masses, args.L) if \"parse_masses_3d\" in globals() else args.masses\n             ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 311, in parse_masses_3d\n    x,y,z,m = map(float, toks)\n    ^^^^^^^\nValueError: could not convert string to float: \"['32'\"\n",
+      "metrics": {
+        "slope": null
+      },
+      "params": {
+        "N": "192",
+        "L": "80",
+        "sigma": "0.6",
+        "tau": "0.20",
+        "dt": "0.05",
+        "warm": "7000",
+        "rmin": "5",
+        "rmax": "20",
+        "masses": [
+          "32",
+          "32",
+          "32",
+          "1.0"
+        ]
+      }
+    },
+    {
+      "cmd": "\"/Users/donnievanmetre/quantum_reality_computer/.venv/bin/python\" don_emergent_collapse_3d.py --test slope --N 192 --L 80 --sigma 0.6 --tau 0.15 --dt 0.05 --warm 7000 --rmin 5 --rmax 20 --masses \"['32', '32', '32', '1.0']\"",
+      "rc": 1,
+      "dt": 0.22825884819030762,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 624, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 600, in main\n    masses = parse_masses_3d(args.masses, args.L) if \"parse_masses_3d\" in globals() else args.masses\n             ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 311, in parse_masses_3d\n    x,y,z,m = map(float, toks)\n    ^^^^^^^\nValueError: could not convert string to float: \"['32'\"\n",
+      "metrics": {
+        "slope": null
+      },
+      "params": {
+        "N": "192",
+        "L": "80",
+        "sigma": "0.6",
+        "tau": "0.15",
+        "dt": "0.05",
+        "warm": "7000",
+        "rmin": "5",
+        "rmax": "20",
+        "masses": [
+          "32",
+          "32",
+          "32",
+          "1.0"
+        ]
+      }
+    },
+    {
+      "cmd": "\"/Users/donnievanmetre/quantum_reality_computer/.venv/bin/python\" don_emergent_collapse_3d.py --test slope --N 192 --L 80 --sigma 1.0 --tau 0.15 --dt 0.05 --warm 7000 --rmin 5 --rmax 20 --masses \"['32', '32', '32', '1.0']\"",
+      "rc": 1,
+      "dt": 0.22764801979064941,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 624, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 600, in main\n    masses = parse_masses_3d(args.masses, args.L) if \"parse_masses_3d\" in globals() else args.masses\n             ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 311, in parse_masses_3d\n    x,y,z,m = map(float, toks)\n    ^^^^^^^\nValueError: could not convert string to float: \"['32'\"\n",
+      "metrics": {
+        "slope": null
+      },
+      "params": {
+        "N": "192",
+        "L": "80",
+        "sigma": "1.0",
+        "tau": "0.15",
+        "dt": "0.05",
+        "warm": "7000",
+        "rmin": "5",
+        "rmax": "20",
+        "masses": [
+          "32",
+          "32",
+          "32",
+          "1.0"
+        ]
+      }
+    },
+    {
+      "cmd": "\"/Users/donnievanmetre/quantum_reality_computer/.venv/bin/python\" don_emergent_collapse_3d.py --test slope --N 192 --L 80 --sigma 1.0 --tau 0.20 --dt 0.05 --warm 7000 --rmin 5 --rmax 20 --masses \"['32', '32', '32', '1.0']\"",
+      "rc": 1,
+      "dt": 0.22676897048950195,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 624, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 600, in main\n    masses = parse_masses_3d(args.masses, args.L) if \"parse_masses_3d\" in globals() else args.masses\n             ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/donnievanmetre/quantum_reality_computer/don_emergent_collapse_3d.py\", line 311, in parse_masses_3d\n    x,y,z,m = map(float, toks)\n    ^^^^^^^\nValueError: could not convert string to float: \"['32'\"\n",
+      "metrics": {
+        "slope": null
+      },
+      "params": {
+        "N": "192",
+        "L": "80",
+        "sigma": "1.0",
+        "tau": "0.20",
+        "dt": "0.05",
+        "warm": "7000",
+        "rmin": "5",
+        "rmax": "20",
+        "masses": [
+          "32",
+          "32",
+          "32",
+          "1.0"
+        ]
+      }
+    }
+  ]
+}

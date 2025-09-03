@@ -1,0 +1,283 @@
+{
+  "summary": {
+    "kind": "slope",
+    "jobs": 9,
+    "ok": 9,
+    "pass_eps": 0.05,
+    "pass": 0,
+    "wall_sec": 11142.49377989769,
+    "throughput_jobs_per_sec": 0.0008077186469905875,
+    "mean_slope": -2.1229657777777775
+  },
+  "grid": {
+    "N": [
+      "192"
+    ],
+    "L": [
+      "80"
+    ],
+    "sigma": [
+      "1.0"
+    ],
+    "tau": [
+      "0.20"
+    ],
+    "rmin": [
+      "8",
+      "10",
+      "12"
+    ],
+    "rmax": [
+      "20",
+      "22",
+      "24"
+    ]
+  },
+  "const": {
+    "dt": "0.05",
+    "warm": "8000",
+    "masses": [
+      "32",
+      "32",
+      "32",
+      "1.0"
+    ],
+    "timeout_sec": 3600.0
+  },
+  "results": [
+    {
+      "cmd": "\"/Users/donnievanmetre/quantum_reality_computer/.venv/bin/python\" don_emergent_collapse_3d.py --test slope --N 192 --L 80 --sigma 1.0 --tau 0.20 --dt 0.05 --warm 8000 --rmin 8 --rmax 22 --masses \"32,32,32,1.0\"",
+      "rc": 0,
+      "dt": 5291.127726078033,
+      "stdout": "[slope_3d] fitted slope p \u2248 -2.079333  (target -2.000)\n[result] WARN slope=-2.079333 (target -2)\n",
+      "stderr": "",
+      "metrics": {
+        "slope": -2.079333
+      },
+      "params": {
+        "N": "192",
+        "L": "80",
+        "sigma": "1.0",
+        "tau": "0.20",
+        "rmin": "8",
+        "rmax": "22",
+        "dt": "0.05",
+        "warm": "8000",
+        "masses": [
+          "32",
+          "32",
+          "32",
+          "1.0"
+        ]
+      }
+    },
+    {
+      "cmd": "\"/Users/donnievanmetre/quantum_reality_computer/.venv/bin/python\" don_emergent_collapse_3d.py --test slope --N 192 --L 80 --sigma 1.0 --tau 0.20 --dt 0.05 --warm 8000 --rmin 8 --rmax 24 --masses \"32,32,32,1.0\"",
+      "rc": 0,
+      "dt": 5291.878211021423,
+      "stdout": "[slope_3d] fitted slope p \u2248 -2.107303  (target -2.000)\n[result] WARN slope=-2.107303 (target -2)\n",
+      "stderr": "",
+      "metrics": {
+        "slope": -2.107303
+      },
+      "params": {
+        "N": "192",
+        "L": "80",
+        "sigma": "1.0",
+        "tau": "0.20",
+        "rmin": "8",
+        "rmax": "24",
+        "dt": "0.05",
+        "warm": "8000",
+        "masses": [
+          "32",
+          "32",
+          "32",
+          "1.0"
+        ]
+      }
+    },
+    {
+      "cmd": "\"/Users/donnievanmetre/quantum_reality_computer/.venv/bin/python\" don_emergent_collapse_3d.py --test slope --N 192 --L 80 --sigma 1.0 --tau 0.20 --dt 0.05 --warm 8000 --rmin 8 --rmax 20 --masses \"32,32,32,1.0\"",
+      "rc": 0,
+      "dt": 5293.159563064575,
+      "stdout": "[slope_3d] fitted slope p \u2248 -2.056275  (target -2.000)\n[result] WARN slope=-2.056275 (target -2)\n",
+      "stderr": "",
+      "metrics": {
+        "slope": -2.056275
+      },
+      "params": {
+        "N": "192",
+        "L": "80",
+        "sigma": "1.0",
+        "tau": "0.20",
+        "rmin": "8",
+        "rmax": "20",
+        "dt": "0.05",
+        "warm": "8000",
+        "masses": [
+          "32",
+          "32",
+          "32",
+          "1.0"
+        ]
+      }
+    },
+    {
+      "cmd": "\"/Users/donnievanmetre/quantum_reality_computer/.venv/bin/python\" don_emergent_collapse_3d.py --test slope --N 192 --L 80 --sigma 1.0 --tau 0.20 --dt 0.05 --warm 8000 --rmin 10 --rmax 20 --masses \"32,32,32,1.0\"",
+      "rc": 0,
+      "dt": 5294.347528934479,
+      "stdout": "[slope_3d] fitted slope p \u2248 -2.092941  (target -2.000)\n[result] WARN slope=-2.092941 (target -2)\n",
+      "stderr": "",
+      "metrics": {
+        "slope": -2.092941
+      },
+      "params": {
+        "N": "192",
+        "L": "80",
+        "sigma": "1.0",
+        "tau": "0.20",
+        "rmin": "10",
+        "rmax": "20",
+        "dt": "0.05",
+        "warm": "8000",
+        "masses": [
+          "32",
+          "32",
+          "32",
+          "1.0"
+        ]
+      }
+    },
+    {
+      "cmd": "\"/Users/donnievanmetre/quantum_reality_computer/.venv/bin/python\" don_emergent_collapse_3d.py --test slope --N 192 --L 80 --sigma 1.0 --tau 0.20 --dt 0.05 --warm 8000 --rmin 10 --rmax 24 --masses \"32,32,32,1.0\"",
+      "rc": 0,
+      "dt": 3754.048460006714,
+      "stdout": "[slope_3d] fitted slope p \u2248 -2.155479  (target -2.000)\n[result] WARN slope=-2.155479 (target -2)\n",
+      "stderr": "",
+      "metrics": {
+        "slope": -2.155479
+      },
+      "params": {
+        "N": "192",
+        "L": "80",
+        "sigma": "1.0",
+        "tau": "0.20",
+        "rmin": "10",
+        "rmax": "24",
+        "dt": "0.05",
+        "warm": "8000",
+        "masses": [
+          "32",
+          "32",
+          "32",
+          "1.0"
+        ]
+      }
+    },
+    {
+      "cmd": "\"/Users/donnievanmetre/quantum_reality_computer/.venv/bin/python\" don_emergent_collapse_3d.py --test slope --N 192 --L 80 --sigma 1.0 --tau 0.20 --dt 0.05 --warm 8000 --rmin 10 --rmax 22 --masses \"32,32,32,1.0\"",
+      "rc": 0,
+      "dt": 3754.8993990421295,
+      "stdout": "[slope_3d] fitted slope p \u2248 -2.121731  (target -2.000)\n[result] WARN slope=-2.121731 (target -2)\n",
+      "stderr": "",
+      "metrics": {
+        "slope": -2.121731
+      },
+      "params": {
+        "N": "192",
+        "L": "80",
+        "sigma": "1.0",
+        "tau": "0.20",
+        "rmin": "10",
+        "rmax": "22",
+        "dt": "0.05",
+        "warm": "8000",
+        "masses": [
+          "32",
+          "32",
+          "32",
+          "1.0"
+        ]
+      }
+    },
+    {
+      "cmd": "\"/Users/donnievanmetre/quantum_reality_computer/.venv/bin/python\" don_emergent_collapse_3d.py --test slope --N 192 --L 80 --sigma 1.0 --tau 0.20 --dt 0.05 --warm 8000 --rmin 12 --rmax 20 --masses \"32,32,32,1.0\"",
+      "rc": 0,
+      "dt": 3754.9690840244293,
+      "stdout": "[slope_3d] fitted slope p \u2248 -2.127674  (target -2.000)\n[result] WARN slope=-2.127674 (target -2)\n",
+      "stderr": "",
+      "metrics": {
+        "slope": -2.127674
+      },
+      "params": {
+        "N": "192",
+        "L": "80",
+        "sigma": "1.0",
+        "tau": "0.20",
+        "rmin": "12",
+        "rmax": "20",
+        "dt": "0.05",
+        "warm": "8000",
+        "masses": [
+          "32",
+          "32",
+          "32",
+          "1.0"
+        ]
+      }
+    },
+    {
+      "cmd": "\"/Users/donnievanmetre/quantum_reality_computer/.venv/bin/python\" don_emergent_collapse_3d.py --test slope --N 192 --L 80 --sigma 1.0 --tau 0.20 --dt 0.05 --warm 8000 --rmin 12 --rmax 22 --masses \"32,32,32,1.0\"",
+      "rc": 0,
+      "dt": 3757.459177017212,
+      "stdout": "[slope_3d] fitted slope p \u2248 -2.162281  (target -2.000)\n[result] WARN slope=-2.162281 (target -2)\n",
+      "stderr": "",
+      "metrics": {
+        "slope": -2.162281
+      },
+      "params": {
+        "N": "192",
+        "L": "80",
+        "sigma": "1.0",
+        "tau": "0.20",
+        "rmin": "12",
+        "rmax": "22",
+        "dt": "0.05",
+        "warm": "8000",
+        "masses": [
+          "32",
+          "32",
+          "32",
+          "1.0"
+        ]
+      }
+    },
+    {
+      "cmd": "\"/Users/donnievanmetre/quantum_reality_computer/.venv/bin/python\" don_emergent_collapse_3d.py --test slope --N 192 --L 80 --sigma 1.0 --tau 0.20 --dt 0.05 --warm 8000 --rmin 12 --rmax 24 --masses \"32,32,32,1.0\"",
+      "rc": 0,
+      "dt": 2096.314064979553,
+      "stdout": "[slope_3d] fitted slope p \u2248 -2.203675  (target -2.000)\n[result] WARN slope=-2.203675 (target -2)\n",
+      "stderr": "",
+      "metrics": {
+        "slope": -2.203675
+      },
+      "params": {
+        "N": "192",
+        "L": "80",
+        "sigma": "1.0",
+        "tau": "0.20",
+        "rmin": "12",
+        "rmax": "24",
+        "dt": "0.05",
+        "warm": "8000",
+        "masses": [
+          "32",
+          "32",
+          "32",
+          "1.0"
+        ]
+      }
+    }
+  ]
+}
