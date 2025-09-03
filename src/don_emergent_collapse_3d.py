@@ -333,6 +333,9 @@ def test_orbit_3d(N=128, L=64.0, masses=[(32,32,32,1.0)], eta=1.0, kappa=1.0, ta
     for i in range(steps):
         xs[i] = x
         E[i]  = 0.5*np.dot(v,v) + phi_em(x)
+        
+        if i == 0:
+            print("[orbit] min_image seam-aware L enabled")
 
         # seam-aware r = x − center (minimum image)
         rx = min_image(x[0] - cx, L)
