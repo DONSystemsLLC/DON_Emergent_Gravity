@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+.vscode/
+frames*/
+sweeps/*_sweep_*.json
+results/**/frames*/
+*.mp4
+*.tmp
+scratch/
