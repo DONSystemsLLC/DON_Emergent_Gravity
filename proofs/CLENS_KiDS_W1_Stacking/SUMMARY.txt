@@ -1,0 +1,3 @@
+Z_overall (unboosted Δ): 0.000
+Cross-shear mean (lens): nan
+Randoms used: 12

@@ -1,0 +1,3 @@
+log10(|J_r|) ~ p*log10(r) + C  => p ≈ -2.052
+Flux flatness (16-84% range of F/F_med): [0.88206657 1.10728884]
+Wrote: N320_L160_box_slope_profile.csv

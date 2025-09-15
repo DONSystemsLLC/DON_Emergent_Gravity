@@ -1,0 +1,11 @@
+[field] loaded snapshot prefix="fields/N320_L160_box"
+Traceback (most recent call last):
+  File "/Users/donnievanmetre/quantum_reality_computer/DON_Emergent_Gravity/src/don_emergent_collapse_3d.py", line 1293, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/Users/donnievanmetre/quantum_reality_computer/DON_Emergent_Gravity/src/don_emergent_collapse_3d.py", line 1279, in main
+    test_orbit_3d(N=args.N, L=args.L, masses=masses, eta=args.eta, kappa=args.kappa,
+  File "/Users/donnievanmetre/quantum_reality_computer/DON_Emergent_Gravity/src/don_emergent_collapse_3d.py", line 744, in test_orbit_3d
+    fld.mu[:] = mu
+    ~~~~~~^^^
+ValueError: could not broadcast input array from shape (320,320,320) into shape (160,160,160)
