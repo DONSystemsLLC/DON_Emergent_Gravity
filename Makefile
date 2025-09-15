@@ -90,7 +90,10 @@ proof-p1:
 	cp -f $(PROOF_DIR)/METHODS_AND_RESULTS_P1.md $(PROOF_DIR)/ || true
 	# lock & checksums
 	pip freeze > $(PROOF_DIR)/requirements.lock.txt
-	( cd $(PROOF_DIR) && shasum -a 256 *.png *.csv *.md *.txt 2>/dev/null > SHA256SUMS.txt || true )
+	( cd $(PROOF_DIR) && \
+	  rm -f SHA256SUMS.txt && \
+	  find . -maxdepth 1 -type f ! -name 'SHA256SUMS.txt' -print0 \
+	    | xargs -0 shasum -a 256 > SHA256SUMS.txt )
 	@echo ">> P1 proof bundle refreshed at: $(PROOF_DIR)"
 	@echo ">> Done."
 
@@ -98,7 +101,10 @@ proof-p1:
 proof-p1-quick:
 	mkdir -p $(PROOF_DIR)
 	pip freeze > $(PROOF_DIR)/requirements.lock.txt
-	( cd $(PROOF_DIR) && shasum -a 256 *.png *.csv *.md *.txt 2>/dev/null > SHA256SUMS.txt || true )
+	( cd $(PROOF_DIR) && \
+	  rm -f SHA256SUMS.txt && \
+	  find . -maxdepth 1 -type f ! -name 'SHA256SUMS.txt' -print0 \
+	    | xargs -0 shasum -a 256 > SHA256SUMS.txt )
 	@echo ">> Quick refresh complete."
 
 # Verify recorded checksums
