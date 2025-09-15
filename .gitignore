@@ -9,3 +9,10 @@ results/**/frames*/
 *.mp4
 *.tmp
 scratch/
+fields/
+outputs/
+working/
+data/
+sweeps/
+*.zip
+*.parquet
