@@ -1,0 +1,6 @@
+[field] loaded snapshot prefix="fields/N320_L160_box"
+[orbit] min_image seam-aware L enabled
+[orbit_3d] mean |dE/E0| ≈ 7.464e-04, mean |d||L||/||L||0| ≈ 4.696e-02
+[orbit_3d] centrality: mean_tau_frac=7.171e-01, radiality_err=9.922e-01
+[orbit_3d] vtheta=0.310000 dE=7.464101e-04 dL=4.695527e-02 rad=9.922150e-01 tau_frac=7.171415e-01 warm_done=0
+METRICS|dE_over_E=1.543806e-05|dL_over_L=2.948107e-03|slope_Fr=-10.116|slope_err=0.093|precession_deg_per_orbit=nan
