@@ -16,3 +16,12 @@ data/
 sweeps/
 *.zip
 *.parquet
+# big or generated artifacts
+fields/
+sweeps/
+*.npz
+*.parquet
+*.feather
+*.zip
+__pycache__/
+.DS_Store
