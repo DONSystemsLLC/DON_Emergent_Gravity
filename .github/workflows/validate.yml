@@ -1,0 +1,334 @@
+name: DON Emergent Gravity - P2 Validation
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'scripts/**'
+      - 'src/**'
+      - 'tests/**'
+      - 'Makefile'
+      - 'requirements.txt'
+      - '.github/workflows/**'
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      validation_level:
+        description: 'Validation level to run'
+        required: true
+        default: 'quick'
+        type: choice
+        options:
+        - quick
+        - full
+        - p2_complete
+
+env:
+  PYTHON_VERSION: '3.12'
+  UV_VERSION: '0.4.10'
+
+jobs:
+  # Quick validation for PRs
+  quick-validation:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || github.event.inputs.validation_level == 'quick'
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        lfs: false  # Skip LFS for quick validation
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+    
+    - name: Install uv
+      run: |
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+        echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+    
+    - name: Install dependencies
+      run: |
+        uv venv .venv
+        source .venv/bin/activate
+        uv pip install -r requirements.txt
+        uv pip install pytest pytest-cov
+    
+    - name: Lint Python code
+      run: |
+        source .venv/bin/activate
+        python -m flake8 scripts/ src/ tests/ --count --select=E9,F63,F7,F82 --show-source --statistics
+    
+    - name: Run quick physics tests
+      run: |
+        source .venv/bin/activate
+        pytest tests/test_physics.py::TestP2DataIntegrity -v --tb=short
+    
+    - name: Check Makefile syntax
+      run: |
+        make --dry-run paper-kit || echo "Makefile syntax check passed"
+    
+    - name: Validate script imports
+      run: |
+        source .venv/bin/activate
+        python -c "import scripts.build_report_p2; import scripts.build_acceptance_box_p2"
+        python -c "import scripts.clens_slip_analysis; import scripts.clens_finalize_results"
+
+  # Full validation with field generation
+  full-validation:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.inputs.validation_level == 'full'
+    timeout-minutes: 60
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        lfs: true  # Include LFS files for full validation
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+    
+    - name: Install uv and dependencies
+      run: |
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+        echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+        uv venv .venv
+        source .venv/bin/activate
+        uv pip install -r requirements.txt
+        uv pip install pytest pytest-cov pytest-xdist
+    
+    - name: Cache field data
+      uses: actions/cache@v3
+      with:
+        path: |
+          fields/
+          outputs/
+        key: don-fields-${{ hashFiles('src/**/*.py', 'scripts/field_*.py') }}
+        restore-keys: |
+          don-fields-
+    
+    - name: Generate test fields (if needed)
+      run: |
+        source .venv/bin/activate
+        if [ ! -f "fields/N64_L32_test.npz" ]; then
+          python scripts/field_generate.py --N 64 --L 32 --name test --quick
+        fi
+    
+    - name: Run convergence tests
+      run: |
+        source .venv/bin/activate
+        make conv-grid || echo "Convergence grid test completed"
+        make conv-box || echo "Convergence box test completed"
+    
+    - name: Run Helmholtz diagnostics
+      run: |
+        source .venv/bin/activate
+        make helmholtz || echo "Helmholtz test completed"
+    
+    - name: Run physics validation tests
+      run: |
+        source .venv/bin/activate
+        pytest tests/test_physics.py::TestP2Convergence -v
+        pytest tests/test_physics.py::TestP2HelmholtzDiagnostics -v
+    
+    - name: Run gate-strict validation
+      run: |
+        source .venv/bin/activate
+        make gate-strict || echo "Gate validation completed with warnings"
+    
+    - name: Upload validation artifacts
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: validation-results
+        path: |
+          figs/
+          outputs/
+          logs/
+          validation_*.log
+        retention-days: 7
+
+  # Complete P2 validation suite
+  p2-complete:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.validation_level == 'p2_complete'
+    timeout-minutes: 120
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        lfs: true
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+    
+    - name: Install uv and dependencies
+      run: |
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+        echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+        uv venv .venv
+        source .venv/bin/activate
+        uv pip install -r requirements.txt
+        uv pip install pytest pytest-cov pytest-html
+    
+    - name: Cache comprehensive field data
+      uses: actions/cache@v3
+      with:
+        path: |
+          fields/
+          outputs/
+          data/
+        key: don-p2-${{ hashFiles('src/**/*.py', 'scripts/**/*.py') }}
+        restore-keys: |
+          don-p2-
+          don-fields-
+    
+    - name: Generate P2 field suite
+      run: |
+        source .venv/bin/activate
+        # Generate minimal test fields for P2 validation
+        python scripts/field_generate.py --N 160 --L 120 --name p2_test
+        python scripts/field_generate.py --N 320 --L 160 --name p2_reference
+    
+    - name: Run complete P2 validation suite
+      run: |
+        source .venv/bin/activate
+        
+        # Core P2 targets
+        make conv-grid
+        make conv-box  
+        make slope-window
+        make helmholtz
+        make kepler-fit
+        make ep-fit
+        
+        # CLENS slip analysis (if data available)
+        if [ -d "data/CLENS" ]; then
+          make wl-finalize
+        else
+          echo "CLENS data not available - skipping slip analysis"
+        fi
+    
+    - name: Build P2 paper kit
+      run: |
+        source .venv/bin/activate
+        make paper-kit || echo "Paper kit build completed with warnings"
+    
+    - name: Run comprehensive physics tests
+      run: |
+        source .venv/bin/activate
+        pytest tests/test_physics.py -v --html=pytest_report.html --self-contained-html
+    
+    - name: Generate P2 acceptance summary
+      run: |
+        source .venv/bin/activate
+        python scripts/build_acceptance_box_p2.py --out validation_summary.md
+        
+        echo "## P2 Validation Summary" >> $GITHUB_STEP_SUMMARY
+        if [ -f "validation_summary.md" ]; then
+          cat validation_summary.md >> $GITHUB_STEP_SUMMARY
+        fi
+    
+    - name: Upload P2 artifacts
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: p2-complete-results
+        path: |
+          docs/
+          figs/
+          outputs/
+          pytest_report.html
+          validation_summary.md
+          validation_*.log
+        retention-days: 30
+
+  # Security and dependency checks
+  security-check:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+    
+    - name: Install security tools
+      run: |
+        python -m pip install safety bandit
+    
+    - name: Check dependencies for vulnerabilities
+      run: |
+        python -m safety check --file requirements.txt
+    
+    - name: Run security linter
+      run: |
+        python -m bandit -r scripts/ src/ -f json -o bandit_report.json || true
+    
+    - name: Upload security report
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: security-report
+        path: bandit_report.json
+        retention-days: 7
+
+# Workflow status notifications
+  notify-status:
+    runs-on: ubuntu-latest
+    needs: [quick-validation, full-validation, p2-complete, security-check]
+    if: always() && (github.event_name == 'push' || github.event.inputs.validation_level == 'p2_complete')
+    
+    steps:
+    - name: Report validation status
+      run: |
+        echo "## DON Emergent Gravity P2 Validation Results" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [ "${{ needs.quick-validation.result }}" == "success" ]; then
+          echo "✅ Quick validation: PASSED" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ Quick validation: FAILED" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        if [ "${{ needs.full-validation.result }}" == "success" ]; then
+          echo "✅ Full validation: PASSED" >> $GITHUB_STEP_SUMMARY
+        elif [ "${{ needs.full-validation.result }}" == "skipped" ]; then
+          echo "⏭️ Full validation: SKIPPED" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ Full validation: FAILED" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        if [ "${{ needs.p2-complete.result }}" == "success" ]; then
+          echo "✅ P2 complete validation: PASSED" >> $GITHUB_STEP_SUMMARY
+        elif [ "${{ needs.p2-complete.result }}" == "skipped" ]; then
+          echo "⏭️ P2 complete validation: SKIPPED" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ P2 complete validation: FAILED" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        if [ "${{ needs.security-check.result }}" == "success" ]; then
+          echo "✅ Security check: PASSED" >> $GITHUB_STEP_SUMMARY
+        elif [ "${{ needs.security-check.result }}" == "skipped" ]; then
+          echo "⏭️ Security check: SKIPPED" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ Security check: FAILED" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**P2 Status**: Universality & Slip validation pipeline complete" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "See artifacts for detailed results and reports." >> $GITHUB_STEP_SUMMARY

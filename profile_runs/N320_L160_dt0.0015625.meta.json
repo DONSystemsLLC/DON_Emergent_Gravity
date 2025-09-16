@@ -1,0 +1,9 @@
+{
+  "N": 320,
+  "L": 160.0,
+  "dt": 0.0015625,
+  "steps": 256000,
+  "vtheta": 0.3,
+  "OMP_NUM_THREADS": 1,
+  "MKL_NUM_THREADS": 1
+}

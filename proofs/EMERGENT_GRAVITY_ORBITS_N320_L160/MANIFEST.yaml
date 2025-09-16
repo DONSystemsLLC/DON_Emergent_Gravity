@@ -1,0 +1,22 @@
+artifact: DON Emergent Gravity — P1 Orbits
+commit: 3358566215713f0d560214f7a4fe88383531613b
+created_utc: 2025-09-16T06:15:46Z
+seed: 42
+environment:
+  python: Python 3.12.2
+  platform: Darwin Donnies-MacBook-Pro.local 24.6.0 Darwin Kernel Version 24.6.0: Mon Jul 14 11:30:40 PDT 2025; root:xnu-11417.140.69~1/RELEASE_ARM64_T6041 arm64
+  pip_freeze: proofs/EMERGENT_GRAVITY_ORBITS_N320_L160/requirements.lock.txt
+inputs:
+  field_snapshots:
+    - "fields/N320_L160_box"
+  force_profile:
+    - "proofs/EMERGENT_GRAVITY_ORBITS_N320_L160/validation_force_profile.csv"
+  slope_profile:
+    - "proofs/EMERGENT_GRAVITY_ORBITS_N320_L160/N320_L160_box_slope_profile.csv"
+acceptance_criteria:
+  slope_p: "-2 ± 0.05 (window-robust)"
+  energy_drift: "|ΔE/E0| < 1e-5"
+  L_drift: "|ΔL/L0| < 1e-3"
+  precession: "< 0.05 deg/orbit"
+checksums:
+  file: "proofs/EMERGENT_GRAVITY_ORBITS_N320_L160/SHA256SUMS.txt"

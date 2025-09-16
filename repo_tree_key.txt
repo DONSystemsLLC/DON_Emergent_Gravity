@@ -1,0 +1,665 @@
+proofs/EMERGENT_GRAVITY_ORBITS_N320_L160
+├── angmom_emergent_3d.png
+├── energy_emergent_3d.png
+├── field_slope_warm.png
+├── FIGURE_CAPTIONS.md
+├── FINAL_PROOF.md
+├── METHODS_AND_RESULTS_P1.md
+├── N320_L160_box_slope_profile.csv
+├── orbit_emergent_3d.png
+├── ORBIT_PRODUCTION_SUMMARY.md
+├── orbit_v026.log
+├── orbit_v028.log
+├── orbit_v029.log
+├── orbit_v030.log
+├── orbit_v031.log
+├── orbit_v032.log
+├── orbit_v034.log
+├── PROVENANCE.md
+├── REFEREE_CRIB_SHEET.md
+├── requirements.lock.txt
+├── RESULTS.md
+├── rotation_curve.png
+├── SHA256SUMS.txt
+└── validation_force_profile.csv
+scripts
+├── data
+│   └── CLENS
+│       └── kids_tiles
+│           ├── kids_225.000_227.000_-2.000_0.000.tsv
+│           ├── kids_225.000_227.000_-4.000_-2.000.tsv
+│           ├── kids_225.000_227.000_-6.000_-4.000.tsv
+│           ├── kids_225.000_227.000_0.000_2.000.tsv
+│           ├── kids_225.000_227.000_2.000_4.000.tsv
+│           ├── kids_225.000_227.000_4.000_6.000.tsv
+│           ├── kids_227.000_229.000_-2.000_0.000.tsv
+│           ├── kids_227.000_229.000_-4.000_-2.000.tsv
+│           ├── kids_227.000_229.000_-6.000_-4.000.tsv
+│           ├── kids_227.000_229.000_0.000_2.000.tsv
+│           ├── kids_227.000_229.000_2.000_4.000.tsv
+│           ├── kids_227.000_229.000_4.000_6.000.tsv
+│           ├── kids_229.000_231.000_-2.000_0.000.tsv
+│           ├── kids_229.000_231.000_-4.000_-2.000.tsv
+│           ├── kids_229.000_231.000_-6.000_-4.000.tsv
+│           ├── kids_229.000_231.000_0.000_2.000.tsv
+│           ├── kids_229.000_231.000_2.000_4.000.tsv
+│           ├── kids_229.000_231.000_4.000_6.000.tsv
+│           ├── kids_231.000_233.000_-2.000_0.000.tsv
+│           ├── kids_231.000_233.000_-4.000_-2.000.tsv
+│           ├── kids_231.000_233.000_-6.000_-4.000.tsv
+│           ├── kids_231.000_233.000_0.000_2.000.tsv
+│           ├── kids_231.000_233.000_2.000_4.000.tsv
+│           ├── kids_231.000_233.000_4.000_6.000.tsv
+│           ├── kids_233.000_235.000_-2.000_0.000.tsv
+│           ├── kids_233.000_235.000_-4.000_-2.000.tsv
+│           ├── kids_233.000_235.000_-6.000_-4.000.tsv
+│           ├── kids_233.000_235.000_0.000_2.000.tsv
+│           ├── kids_233.000_235.000_2.000_4.000.tsv
+│           ├── kids_233.000_235.000_4.000_6.000.tsv
+│           ├── kids_235.000_237.000_-2.000_0.000.tsv
+│           ├── kids_235.000_237.000_-4.000_-2.000.tsv
+│           ├── kids_235.000_237.000_-6.000_-4.000.tsv
+│           ├── kids_235.000_237.000_0.000_2.000.tsv
+│           ├── kids_235.000_237.000_2.000_4.000.tsv
+│           └── kids_235.000_237.000_4.000_6.000.tsv
+├── acceptance_gate.py
+├── appendix_methods_table_md.py
+├── appendix_methods_table_tex.py
+├── build_report_md.py
+├── build_report.py
+├── clens_boost_and_z.py
+├── clens_end_to_end.sh
+├── clens_fetch_all.py
+├── clens_fetch_w1_tiles.py
+├── clens_finalize_results.py
+├── clens_ingest_cfhtlens.py
+├── clens_ingest_mcxc.py
+├── clens_live_summary.py
+├── clens_plots.py
+├── clens_prepare.py
+├── clens_random_ensemble.py
+├── clens_simple_summary.py
+├── clens_stack.py
+├── ep_mass_independence_from_summaries.py
+├── extract_force_profile.py
+├── fetch_redmapper_vizier.py
+├── helmholtz_diagnostics.py
+├── ingest_redmapper.py
+├── kepler_fit_from_summaries.py
+├── kepler_periods_from_logs.py
+├── kids_tile_audit_merge.py
+├── methods_table_from_profiles.py
+├── orbit_finalize_results.py
+├── orbit_metrics_sweep.py
+├── orbit_production_summary.py
+├── orbit_sweep_summary.py
+├── paper_figures.py
+├── precession_from_logs.py
+├── recompute_L_unwrapped.py
+├── reproduce_proof.sh
+├── sparc_build_inrange_coords_from_rc.py
+├── sparc_prepare_inrange.py
+└── sparc_prepare.py
+docs
+├── Appendix_Methods_Table.md
+├── Appendix_Methods_Table.tex
+├── OVERVIEW.md
+└── REPORT.md
+figs
+├── helmholtz_checks.csv
+├── helmholtz_checks.json
+├── kepler_fit.csv
+└── methods_table.csv
+outputs
+├── CLENS
+│   ├── effect_summary.txt
+│   ├── profile_control.csv
+│   ├── profile_focus.csv
+│   └── stack_profiles.png
+├── CLENS_patch
+│   ├── gt_panel.png
+│   ├── gt_profiles.png
+│   ├── profile_control.csv
+│   ├── profile_focus.csv
+│   └── random_delta_hist.png
+├── CLENS_patch_e2flip
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_patch_e2flip_rot
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_patch_focusZ
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_patch_jk
+│   ├── all
+│   │   ├── profile_control.csv
+│   │   └── profile_focus.csv
+│   ├── LOO_0
+│   │   ├── profile_control.csv
+│   │   └── profile_focus.csv
+│   ├── LOO_1
+│   │   ├── profile_control.csv
+│   │   └── profile_focus.csv
+│   ├── LOO_2
+│   │   ├── profile_control.csv
+│   │   └── profile_focus.csv
+│   └── LOO_3
+│       ├── profile_control.csv
+│       └── profile_focus.csv
+├── CLENS_patch_rot
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_patch_sideA
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_patch_sideB
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_patch_sourceslices
+├── CLENS_patch_sourceslices_focus
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_patch_sourceslices_side
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_patch_sourceslices_sideB
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_patch_zcut
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_01
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_02
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_03
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_04
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_05
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_06
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_07
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_08
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_09
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_10
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_11
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_12
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_13
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_14
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_15
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_16
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_17
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_18
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_19
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_20
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_21
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_22
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_23
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_24
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_25
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_26
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_27
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_28
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_29
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_30
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_31
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_32
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_33
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_34
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_35
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_36
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_37
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_38
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_39
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_40
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_41
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_42
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_43
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_44
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_45
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_46
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_47
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_48
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_49
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_50
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_e2flip
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_01
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_02
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_03
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_04
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_05
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_06
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_07
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_08
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_09
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_10
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_11
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_12
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_13
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_14
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_15
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_16
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_17
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_18
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_19
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_20
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_21
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_22
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_23
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_24
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_25
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_26
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_27
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_28
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_29
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat_30
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_01
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_02
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_03
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_04
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_05
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_06
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_07
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_08
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_09
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_10
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_11
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_12
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_13
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_14
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_15
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_16
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_17
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_18
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_19
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_20
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_21
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_22
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_23
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_24
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_25
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_26
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_27
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_28
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_29
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_30
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_31
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_32
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_33
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_34
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_35
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_36
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_37
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_38
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_39
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_40
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_41
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_42
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_43
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_44
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_45
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_46
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_47
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_48
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_49
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat2_50
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat3_001
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat3_002
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat3_003
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat3_004
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat3_005
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat3_006
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat3_007
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat3_008
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat3_009
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat3_01
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat3_010
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_random_strat3_02
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── CLENS_release
+│   ├── band_means.csv
+│   └── gt_panel.png
+├── JK_all
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── JK_LOO_0
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── JK_LOO_1
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── JK_LOO_2
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── JK_LOO_3
+│   ├── profile_control.csv
+│   └── profile_focus.csv
+├── orbits
+│   ├── N320_L160_box_best
+│   │   ├── angmom_emergent_3d.png
+│   │   ├── energy_emergent_3d.png
+│   │   ├── orbit_emergent_3d.png
+│   │   ├── orbit_run.log
+│   │   └── orbit.out
+│   ├── N320_L160_box_eps5e-4_best
+│   │   ├── orbit_new.out
+│   │   ├── orbit_production.out
+│   │   ├── orbit_run.out
+│   │   └── orbit.out
+│   ├── orbit_v026.log
+│   ├── orbit_v028.log
+│   ├── orbit_v029.log
+│   ├── orbit_v030.log
+│   ├── orbit_v031.log
+│   ├── orbit_v032.log
+│   └── orbit_v034.log
+├── SPARC
+│   ├── figs
+│   │   ├── vc_2p2Rd_vs_radius.png
+│   │   └── vc_3p0_vs_2p2.png
+│   ├── logs
+│   └── tables
+│       ├── env1d_effects.csv
+│       ├── ned_sigma5_cache.json
+│       ├── sparc_ready_coords.csv
+│       ├── sparc_ready_env.csv
+│       ├── sparc_ready_env1d.csv
+│       ├── sparc_ready_inrange_coords.csv
+│       ├── sparc_ready_inrange_tidy.csv
+│       ├── sparc_ready_inrange.csv
+│       ├── sparc_ready.csv
+│       └── sparc_summary.csv
+├── .DS_Store
+├── CLENS_random_autostr_list.json
+├── CLENS_random_list.json
+├── CLENS_random_strat_list.json
+├── CLENS_random_strat2_list.json
+├── CLENS_release_bundle.zip
+└── ENV.txt
+
+184 directories, 479 files

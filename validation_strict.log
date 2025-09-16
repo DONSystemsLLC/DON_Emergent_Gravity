@@ -1,0 +1,8 @@
+usage: orbit_metrics_sweep.py [-h] --vtheta VTHETA [--out_dir OUT_DIR]
+                              [--timeout TIMEOUT] [--N N] [--L L]
+                              [--sigma SIGMA] [--tau TAU] [--dt DT]
+                              [--steps STEPS] [--warm WARM] [--r0 R0]
+                              [--masses MASSES] [--orbit_from_potential]
+                              [--project_curl_free] [--save_logs]
+                              [--load_field LOAD_FIELD]
+orbit_metrics_sweep.py: error: unrecognized arguments:     

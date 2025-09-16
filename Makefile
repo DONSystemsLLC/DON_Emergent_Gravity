@@ -9,7 +9,10 @@ wl-monitor:
 	while true; do date; $(VENV) -u monitor_clens.py; sleep 20; done
 
 wl-finalize:
-	$(VENV) -u scripts/clens_finalize_results.py
+	$(VENV) -u scripts/clens_finalize_results.py && \
+	$(VENV) -u scripts/clens_plots.py && \
+	$(VENV) -u scripts/clens_slip_analysis.py
+	@echo "[wl-finalize] P2 CLENS slip prototype complete"
 
 wl-check:
 	$(VENV) -u monitor_clens.py
@@ -155,7 +158,45 @@ FLUX_PROFILE     ?= proofs/EMERGENT_GRAVITY_ORBITS_N320_L160/N320_L160_box_slope
 STRICT_SUMMARY   ?= sweeps/validation_orbit_strict/summary.csv
 
 # Flux tolerance (p95). Default 20% for now; tighten to 5% when you're ready.
-GATE_FLUX_TOL    ?= 0.20
+GATE_FLUX_TOL    ?= 0.05
+
+# -------------------
+# P2: Convergence Sweeps
+# -------------------
+conv-grid:
+	@echo "[conv-grid] Testing N convergence (fixed L=$(L))"
+	@for n in 160 240 320 400; do \
+	  echo "[conv-grid] N=$$n..."; \
+	  $(PY) -u scripts/orbit_metrics_sweep.py \
+	    --vtheta 0.30 --out_dir sweeps/conv_grid_N$$n \
+	    --N $$n --L $(L) --dt $(DT_STRICT) --steps $(STEPS_STRICT) --warm 0 \
+	    --r0 $(R0) --masses 80,80,80,1.0 \
+	    --orbit_from_potential --project_curl_free --save_logs \
+	    --load_field $(LOAD_FIELD_PROFILE) --timeout 3600; \
+	done
+	$(PY) -u scripts/convergence_grid_summary.py --grid_type N --out_csv figs/convergence_grid.csv
+
+conv-box:
+	@echo "[conv-box] Testing L convergence (fixed N=$(N))"
+	@for l in 120 160 200; do \
+	  echo "[conv-box] L=$$l..."; \
+	  $(PY) -u scripts/orbit_metrics_sweep.py \
+	    --vtheta 0.30 --out_dir sweeps/conv_box_L$$l \
+	    --N $(N) --L $$l --dt $(DT_STRICT) --steps $(STEPS_STRICT) --warm 0 \
+	    --r0 $(R0) --masses 80,80,80,1.0 \
+	    --orbit_from_potential --project_curl_free --save_logs \
+	    --load_field $(LOAD_FIELD_PROFILE) --timeout 3600; \
+	done
+	$(PY) -u scripts/convergence_box_summary.py --grid_type L --out_csv figs/convergence_box.csv
+
+# -------------------
+# P2: Window Independence Heatmap
+# -------------------
+slope-window:
+	$(PY) -u scripts/slope_window_heatmap.py \
+	  --field_npz $(FIELD_NPZ) --L $(L) \
+	  --out_png figs/slope_window_heatmap.png \
+	  --out_json figs/slope_window_heatmap.json
 
 # -------------------
 # Helmholtz diagnostics (R_curl, tau_frac, radiality error)
@@ -321,3 +362,23 @@ report-md: methods-table helmholtz kepler-fit ep-fit
 	  --methods_csv figs/methods_table.csv \
 	  --out docs/REPORT.md
 	@echo ">> wrote docs/REPORT.md"
+
+# -------------------
+# P2: Complete Package & Release
+# -------------------
+paper-kit: conv-grid conv-box slope-window helmholtz kepler-fit ep-fit wl-finalize
+	@echo "[paper-kit] Building P2 complete validation package..."
+	$(PY) -u scripts/build_report_p2.py \
+	  --title "DON Emergent Gravity — P2 Universality & Slip" \
+	  --conv_grid_csv figs/convergence_grid.csv \
+	  --conv_box_csv figs/convergence_box.csv \
+	  --slope_window_json figs/slope_window_heatmap.json \
+	  --helm_json figs/helmholtz_checks.json \
+	  --kepler_csv figs/kepler_fit.csv \
+	  --ep_glob 'sweeps/ep_m*/summary.csv' \
+	  --slip_csv outputs/CLENS_release/slip_analysis.csv \
+	  --methods_csv figs/methods_table.csv \
+	  --out docs/REPORT.md
+	$(PY) -u scripts/build_acceptance_box_p2.py \
+	  --out docs/ACCEPTANCE_BOX_P2.md
+	@echo ">> P2 paper kit complete: docs/REPORT.md + docs/ACCEPTANCE_BOX_P2.md"
