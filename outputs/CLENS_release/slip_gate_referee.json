@@ -1,0 +1,30 @@
+{
+  "overall_pass": true,
+  "metrics": {
+    "slip_mean": 0.11634751264862801,
+    "slip_median": 0.1306400150337175,
+    "slip_rms": 1.03937656878745,
+    "median_snr": 2.785647268567561,
+    "min_snr": 0.6091429960227382
+  },
+  "gate": {
+    "nulls": {
+      "rot_mean_within_1sigma": true,
+      "x_mean_within_1sigma": true,
+      "rot_maxabs_le_3sigma": true,
+      "x_maxabs_le_3sigma": true
+    },
+    "snr": {
+      "median_snr_ge_0p5": true,
+      "min_snr_ge_0p2": true
+    },
+    "calibration": {
+      "rel_err_A_le_0p5": true,
+      "A_value": -0.4451871647659409,
+      "rel_err_A": 0.0
+    },
+    "range": {
+      "all_slip_in_pm2": true
+    }
+  }
+}

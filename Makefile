@@ -9,9 +9,15 @@ wl-monitor:
 	while true; do date; $(VENV) -u monitor_clens.py; sleep 20; done
 
 wl-finalize:
-	$(VENV) -u scripts/clens_finalize_results.py && \
-	$(VENV) -u scripts/clens_plots.py && \
-	$(VENV) -u scripts/clens_slip_analysis.py
+	.PHONY: wl-finalize
+wl-finalize:
+	$(PY) -u scripts/clens_finalize_results.py
+	$(PY) -u scripts/clens_plots.py
+	$(PY) -u scripts/clens_slip_analysis.py
+
+.PHONY: wl-gate
+wl-gate:
+	$(PY) -u scripts/accept_slip_gate.py
 	@echo "[wl-finalize] P2 CLENS slip prototype complete"
 
 wl-check:

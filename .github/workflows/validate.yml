@@ -214,6 +214,7 @@ jobs:
         # CLENS slip analysis (if data available)
         if [ -d "data/CLENS" ]; then
           make wl-finalize
+          make wl-gate
         else
           echo "CLENS data not available - skipping slip analysis"
         fi
