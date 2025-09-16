@@ -120,3 +120,204 @@ proof-clean:
 	@rm -f field_slope_warm.png field_slope_3d.png || true
 	@rm -f rotation_curve.png || true
 	@echo ">> Cleaned transient analysis outputs."
+
+# ========================
+# P1 Validation Shortcuts
+# ========================
+.PHONY: helmholtz kepler kepler-runs kepler-fit ep ep-runs ep-fit gate-strict p1-accept
+
+# --- User-tunable defaults ---
+PY               ?= .venv/bin/python
+L                ?= 160
+N                ?= 320
+DT_STRICT        ?= 0.0015625
+STEPS_STRICT     ?= 256000
+R0               ?= 20.0
+KEPLER_V         ?= 0.26 0.28 0.30 0.32 0.34
+EP_M             ?= 0.5 1.0 2.0
+KEPLER_MIN_GAP   ?= 50
+
+# Accept: set to your latest field snapshot
+FIELD_NPZ        ?= fields/N320_L160_box_eps3e-4.npz
+
+# Annulus used for slope/flux diagnostics (curl-free window)
+ANNULUS          ?= 12,32
+space :=
+space +=
+comma := ,
+ANN_RMIN         := $(word 1,$(subst $(comma),$(space),$(ANNULUS)))
+ANN_RMAX         := $(word 2,$(subst $(comma),$(space),$(ANNULUS)))
+
+# Profiles & summaries used by the acceptance gate
+FORCE_PROFILE    ?= proofs/EMERGENT_GRAVITY_ORBITS_N320_L160/validation_force_profile.csv
+SLOPE_COLUMN     ?= Fr_med
+FLUX_PROFILE     ?= proofs/EMERGENT_GRAVITY_ORBITS_N320_L160/N320_L160_box_slope_profile.csv
+STRICT_SUMMARY   ?= sweeps/validation_orbit_strict/summary.csv
+
+# Flux tolerance (p95). Default 20% for now; tighten to 5% when you're ready.
+GATE_FLUX_TOL    ?= 0.20
+
+# -------------------
+# Helmholtz diagnostics (R_curl, tau_frac, radiality error)
+# -------------------
+helmholtz:
+	$(PY) -u scripts/helmholtz_diagnostics.py \
+	  --field_npz $(FIELD_NPZ) \
+	  --L $(L) --rmin $(ANN_RMIN) --rmax $(ANN_RMAX) \
+	  --out_csv figs/helmholtz_checks.csv \
+	  --out_json figs/helmholtz_checks.json
+
+# -------------------
+# Kepler: run strict orbits and fit T^2 ~ a^3
+# -------------------
+kepler-runs:
+	@for v in $(KEPLER_V); do \
+	  echo "[kepler] vtheta=$$v"; \
+	  $(PY) -u scripts/orbit_metrics_sweep.py \
+	    --vtheta $$v --out_dir sweeps/kepler_v$$v \
+	    --N $(N) --L $(L) --dt $(DT_STRICT) --steps $(STEPS_STRICT) --warm 0 \
+	    --r0 $(R0) --masses 80,80,80,1.0 \
+	    --orbit_from_potential --project_curl_free --save_logs ; \
+	done
+	$(PY) -u parse_orbit_logs.py sweeps/kepler_v*
+
+kepler-fit:
+	$(PY) -u scripts/kepler_periods_from_logs.py \
+	  --glob 'sweeps/kepler_v*/logs/*orbit_log.csv' \
+	  --L $(L) --min_gap $(KEPLER_MIN_GAP)
+
+kepler: kepler-runs kepler-fit
+
+# -------------------
+# Equivalence Principle (m = 0.5, 1.0, 2.0) + report spread
+# -------------------
+ep-runs:
+	@for m in $(EP_M); do \
+	  echo "[ep] m=$$m"; \
+	  $(PY) -u scripts/orbit_metrics_sweep.py \
+	    --vtheta 0.30 --out_dir sweeps/ep_m$$m \
+	    --N $(N) --L $(L) --dt $(DT_STRICT) --steps $(STEPS_STRICT) --warm 0 \
+	    --r0 $(R0) --masses 80,80,80,$$m \
+	    --orbit_from_potential --project_curl_free --save_logs ; \
+	done
+	$(PY) -u parse_orbit_logs.py sweeps/ep_m*
+
+ep-fit:
+	$(PY) -u scripts/ep_mass_independence_from_summaries.py \
+	  --glob 'sweeps/ep_m*/summary.csv'
+
+ep: ep-runs ep-fit
+
+# -------------------
+# One-line acceptance gate (strict)
+# -------------------
+gate-strict:
+	$(PY) -u scripts/acceptance_gate.py \
+	  --summary_csv $(STRICT_SUMMARY) \
+	  --slope_csv $(FORCE_PROFILE) \
+	  --slope_column $(SLOPE_COLUMN) \
+	  --slope_target -2.0 --slope_tol 0.05 \
+	  --flux_csv  $(FLUX_PROFILE) \
+	  --flux_rmin $(ANN_RMIN) --flux_rmax $(ANN_RMAX) \
+	  --flux_tol $(GATE_FLUX_TOL) --flux_use_median 1 \
+	  --max_prec 0.05
+
+# Convenience alias: rebuild proof, run helmholtz, kepler fit, EP fit, then gate
+p1-accept: helmholtz kepler-fit ep-fit gate-strict
+	@echo ">> P1 acceptance sequence complete."
+
+# ========================
+# Methods Table Profiling
+# ========================
+.PHONY: profile-one profile-grid methods-table appendix-md appendix-tex appendix report report-md
+
+PY                ?= .venv/bin/python
+N                 ?= 320
+L                 ?= 160
+DT_STRICT         ?= 0.0015625
+STEPS_STRICT      ?= 256000
+R0                ?= 20.0
+VTHETA_PROFILE    ?= 0.30
+PROFILE_OUTDIR    ?= profile_runs
+LOAD_FIELD_PROFILE ?= fields/N320_L160_box
+
+# Cross-platform time command: prefer GNU gtime -v, else BSD /usr/bin/time -l
+TIME_CMD ?= $(shell (command -v gtime >/dev/null 2>&1 && echo gtime -v) || echo /usr/bin/time -l)
+
+N_LIST            ?= 160 320
+L_LIST            ?= 120 160
+DT_LIST           ?= $(DT_STRICT)
+
+export OMP_NUM_THREADS ?= 1
+export MKL_NUM_THREADS ?= 1
+
+profile-one:
+	@mkdir -p $(PROFILE_OUTDIR)
+	@echo "[profile] N=$(N) L=$(L) dt=$(DT_STRICT) steps=$(STEPS_STRICT) vtheta=$(VTHETA_PROFILE)"
+	@{ $(TIME_CMD) sh -c '\
+	  $(PY) -u scripts/orbit_metrics_sweep.py \
+	    --vtheta $(VTHETA_PROFILE) --out_dir $(PROFILE_OUTDIR)/N$(N)_L$(L)_dt$(DT_STRICT) \
+	    --N $(N) --L $(L) --dt $(DT_STRICT) --steps $(STEPS_STRICT) --warm 0 \
+	    --r0 $(R0) --masses 80,80,80,1.0 \
+	    --orbit_from_potential --project_curl_free --save_logs --load_field $(LOAD_FIELD_PROFILE) \
+	' 2> $(PROFILE_OUTDIR)/N$(N)_L$(L)_dt$(DT_STRICT).timelog; \
+	  status=$$?; \
+	  if [ $$status -ne 0 ]; then \
+	    if [ $$status -eq 1 ] && grep -qi "Operation not permitted" $(PROFILE_OUTDIR)/N$(N)_L$(L)_dt$(DT_STRICT).timelog; then \
+	      echo "[profile] warning: resource usage info limited (time exit $$status)"; \
+	    else \
+	      exit $$status; \
+	    fi; \
+	  fi; \
+	}
+	@$(PY) -c "import json, sys; json.dump({'N': int($(N)), 'L': float($(L)), 'dt': float($(DT_STRICT)), 'steps': int($(STEPS_STRICT)), 'vtheta': float($(VTHETA_PROFILE)), 'OMP_NUM_THREADS': int($(OMP_NUM_THREADS)), 'MKL_NUM_THREADS': int($(MKL_NUM_THREADS))}, sys.stdout, indent=2)" > $(PROFILE_OUTDIR)/N$(N)_L$(L)_dt$(DT_STRICT).meta.json
+	@echo "[profile] wrote $(PROFILE_OUTDIR)/N$(N)_L$(L)_dt$(DT_STRICT).timelog (+ .meta.json)"
+
+profile-grid:
+	@mkdir -p $(PROFILE_OUTDIR)
+	@for n in $(N_LIST); do \
+	  for l in $(L_LIST); do \
+	    for dt in $(DT_LIST); do \
+	      echo "[profile] N=$$n L=$$l dt=$$dt steps=$(STEPS_STRICT)"; \
+	      N=$$n L=$$l DT_STRICT=$$dt $(MAKE) --no-print-directory profile-one; \
+	    done; \
+	  done; \
+	done
+
+methods-table:
+	$(PY) -u scripts/methods_table_from_profiles.py \
+	  --glob "$(PROFILE_OUTDIR)/*.timelog" \
+	  --out figs/methods_table.csv
+	@echo ">> wrote figs/methods_table.csv"
+
+appendix-md:
+	$(PY) -u scripts/appendix_methods_table_md.py \
+	  --methods_csv figs/methods_table.csv \
+	  --out_md docs/Appendix_Methods_Table.md \
+	  --title "Appendix A — Numerical Performance and Resources" \
+	  --sort --add_summary
+
+appendix-tex:
+	$(PY) -u scripts/appendix_methods_table_tex.py \
+	  --methods_csv figs/methods_table.csv \
+	  --out_tex docs/Appendix_Methods_Table.tex \
+	  --title "Appendix A — Numerical Performance and Resources" \
+	  --label "tab:methods" --sort --median
+
+appendix: methods-table appendix-md appendix-tex
+	@echo ">> Appendix (MD + TeX) generated"
+
+report: methods-table helmholtz kepler-fit ep-fit
+	$(PY) -u scripts/build_report.py --out REPORT.md
+	@echo ">> Validation report written to REPORT.md"
+
+report-md: methods-table helmholtz kepler-fit ep-fit
+	$(PY) -u scripts/build_report_md.py \
+	  --title "DON Emergent Gravity — Validation Report (P1)" \
+	  --accept ACCEPTANCE_BOX.md \
+	  --helm_json figs/helmholtz_checks.json \
+	  --kepler_csv figs/kepler_fit.csv \
+	  --ep_glob 'sweeps/ep_m*/summary.csv' \
+	  --methods_csv figs/methods_table.csv \
+	  --out docs/REPORT.md
+	@echo ">> wrote docs/REPORT.md"

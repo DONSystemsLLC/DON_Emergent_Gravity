@@ -1,0 +1,2 @@
+file,N,L,dt,steps,seconds,steps_per_sec,max_rss_GB,OMP_NUM_THREADS,MKL_NUM_THREADS
+N320_L160_dt0.0015625.timelog,320,160.0,0.0015625,256000,50.19,5100.617652918909,,1,1
