@@ -8,6 +8,8 @@ import os
 import sys
 from pathlib import Path
 import numpy as np
+import pandas as pd
+import argparse
 
 # Acceptance criteria thresholds
 CRITERIA = {
@@ -38,25 +40,73 @@ CRITERIA = {
     }
 }
 
-def check_slope(profile_file="N320_L160_box_slope_profile.csv"):
-    """Check force law slope from profile analysis."""
-    if not os.path.exists(profile_file):
-        return None, "Profile file not found"
+def _poly_slope(x, y):
+    """Compute power law slope from log-log fit."""
+    import numpy as np
+    m = np.isfinite(x) & np.isfinite(y) & (y != 0) & (x > 0)
+    if m.sum() < 2:
+        return None
+    x = np.log(x[m])
+    y = np.log(np.abs(y[m]))
+    return float(np.polyfit(x, y, 1)[0])
 
-    # Read the slope from the analysis output
-    # Looking for lines like "Fitted slope: p = -2.052 ± 0.050"
-    slope_file = profile_file.replace("_profile.csv", "_analysis.txt")
-    if os.path.exists(slope_file):
-        with open(slope_file, 'r') as f:
-            for line in f:
-                if "Fitted slope" in line:
-                    parts = line.split("=")[1].split("±")
-                    slope = float(parts[0].strip())
-                    error = float(parts[1].strip())
-                    passed = abs(slope - CRITERIA["slope"]["target"]) <= CRITERIA["slope"]["tolerance"]
-                    return passed, f"p = {slope:.3f} ± {error:.3f}"
+def compute_slope_from_csv(path, col_hint=None):
+    """Extract slope from CSV with flexible column detection."""
+    import pandas as pd
+    cand_order = [col_hint, "Fr", "F_r", "a_r", "gradPhi_r", "g_r", "ar", "ar_med"]
+    df = pd.read_csv(path)
 
-    return None, "Slope analysis not found"
+    # Find r column
+    r_col = None
+    for rc in ["r", "r_mid"]:
+        if rc in df.columns:
+            r_col = rc
+            break
+    if not r_col:
+        raise ValueError("No 'r' or 'r_mid' column found in CSV")
+
+    # Find force/acceleration column
+    for c in cand_order:
+        if c and c in df.columns:
+            slope = _poly_slope(df[r_col].to_numpy(), df[c].to_numpy())
+            if slope is not None:
+                return slope, c
+
+    raise ValueError("No suitable force/accel column found. Provide --slope_column.")
+
+def flux_metric(path, rmin, rmax, use_median=True):
+    """Compute flux constancy metrics."""
+    import pandas as pd, numpy as np
+    d = pd.read_csv(path)
+
+    # Find r column
+    if "r" in d.columns:
+        r = d["r"].to_numpy()
+    elif "r_mid" in d.columns:
+        r = d["r_mid"].to_numpy()
+    else:
+        raise ValueError("No 'r' or 'r_mid' column in flux CSV")
+
+    # Find Jr column (prefer median if available)
+    if use_median and "Jr_med" in d.columns:
+        Jr = d["Jr_med"].to_numpy()
+    elif use_median and "J_med" in d.columns:
+        Jr = d["J_med"].to_numpy()
+    elif "Jr" in d.columns:
+        Jr = d["Jr"].to_numpy()
+    elif "J_med" in d.columns:
+        Jr = d["J_med"].to_numpy()
+    else:
+        raise ValueError("No Jr/Jr_med/J_med column in flux CSV")
+
+    m = (r >= rmin) & (r <= rmax) & np.isfinite(Jr) & (Jr != 0)
+    if m.sum() == 0:
+        raise ValueError(f"No valid flux data in range [{rmin}, {rmax}]")
+
+    F = (r[m]**2) * Jr[m]  # Gauss-law flux
+    center = np.median(F) if use_median else np.mean(F)
+    dev = np.abs(F/center - 1.0)
+    return float(np.percentile(dev, 95)), float(np.sqrt((dev**2).mean()))
 
 def check_orbit_metrics(metrics_file="orbit_metrics.json"):
     """Check orbit conservation metrics."""
@@ -118,28 +168,31 @@ def check_curl_free(field_file="fields/N320_L160_box.npz"):
 
     return None, "Curl analysis not found"
 
-def check_flux_constancy(profile_file="N320_L160_box_slope_profile.csv"):
-    """Check flux constancy from profile."""
-    import pandas as pd
-
-    if not os.path.exists(profile_file):
-        return None, "Profile file not found"
-
-    df = pd.read_csv(profile_file)
-    if "F_rel" in df.columns:
-        f_min = df["F_rel"].min()
-        f_max = df["F_rel"].max()
-        r_min, r_max = CRITERIA["flux_flatness"]["range"]
-        passed = (f_min >= r_min) and (f_max <= r_max)
-        return passed, f"[{f_min:.3f}, {f_max:.3f}]"
-
-    return None, "Flux data not found"
-
 def main():
     """Run all acceptance checks."""
-    import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--summary_csv", help="Path to summary CSV from sweep")
+
+    # Slope arguments
+    parser.add_argument("--slope_csv", type=str, default=None,
+                        help="CSV with radial profiles (e.g. r, Fr or a_r or gradPhi_r).")
+    parser.add_argument("--slope_column", type=str, default=None,
+                        help="Column to use for slope (defaults: Fr|F_r|a_r|gradPhi_r|g_r).")
+    parser.add_argument("--slope_target", type=float, default=-2.0)
+    parser.add_argument("--slope_tol", type=float, default=0.05)
+
+    # Flux arguments
+    parser.add_argument("--flux_csv", type=str, default=None,
+                        help="CSV with r and Jr (or Jr_med); we test flatness of r^2 ⟨J_r⟩.")
+    parser.add_argument("--flux_rmin", type=float, default=10.0)
+    parser.add_argument("--flux_rmax", type=float, default=28.0)
+    parser.add_argument("--flux_tol", type=float, default=0.05)  # ±5% p95 dev
+    parser.add_argument("--flux_use_median", type=int, default=1)
+
+    # Other arguments
+    parser.add_argument("--max_prec", type=float, default=0.05,
+                        help="Maximum allowed precession (deg/orbit)")
+
     args = parser.parse_args()
 
     print("=" * 60)
@@ -152,15 +205,28 @@ def main():
 
     # 1. Force law slope
     print("1. Force Law Slope Check")
-    passed, msg = check_slope()
-    if passed is not None:
-        status = "✓ PASS" if passed else "✗ FAIL"
-        print(f"   {status}: {msg}")
-        print(f"   Target: {CRITERIA['slope']['target']} ± {CRITERIA['slope']['tolerance']}")
-        results["slope"] = passed
-        all_passed = all_passed and passed
+    if args.slope_csv and os.path.exists(args.slope_csv):
+        try:
+            p, used_col = compute_slope_from_csv(args.slope_csv, args.slope_column)
+            okp = abs(p - args.slope_target) <= args.slope_tol
+            status = "✓ PASS" if okp else "✗ FAIL"
+            print(f"   {status}: p = {p:.3f} using [{used_col}]  "
+                  f"(target {args.slope_target:+.1f} ± {args.slope_tol:.2f})")
+            results["slope"] = okp
+            all_passed = all_passed and okp
+
+            # Hint for wrong slope type
+            if not okp and abs(p) < 0.3:
+                print("   hint: slope≈0 suggests you fed a flux (r²⟨J_r⟩) series; "
+                      "pass --slope_column Fr|a_r|gradPhi_r to check the force-law (target −2).")
+            if not okp and abs(p) > 4:
+                print("   hint: |slope|≫2 likely wrong column (e.g., derivative metric). "
+                      "Pass --slope_column explicitly.")
+        except Exception as e:
+            print(f"   ✗ ERROR: {e}")
+            all_passed = False
     else:
-        print(f"   ⚠ SKIP: {msg}")
+        print("   ⚠ SKIP: Slope analysis not provided")
 
     print()
 
@@ -169,7 +235,6 @@ def main():
 
     # If CSV provided, extract metrics from it
     if args.summary_csv and os.path.exists(args.summary_csv):
-        import pandas as pd
         df = pd.read_csv(args.summary_csv)
         # Use the first row if multiple
         if len(df) > 0:
@@ -219,15 +284,21 @@ def main():
 
     # 4. Flux constancy
     print("4. Flux Constancy Check")
-    passed, msg = check_flux_constancy()
-    if passed is not None:
-        status = "✓ PASS" if passed else "✗ FAIL"
-        print(f"   {status}: Normalized flux range: {msg}")
-        print(f"   Target: {CRITERIA['flux_flatness']['range']}")
-        results["flux"] = passed
-        all_passed = all_passed and passed
+    if args.flux_csv and os.path.exists(args.flux_csv):
+        try:
+            p95, rms = flux_metric(args.flux_csv, args.flux_rmin, args.flux_rmax,
+                                  bool(args.flux_use_median))
+            okflux = (p95 <= args.flux_tol)
+            status = "✓ PASS" if okflux else "✗ FAIL"
+            print(f"   {status}: r²⟨J_r⟩ flatness in [{args.flux_rmin},{args.flux_rmax}]")
+            print(f"   p95={p95:.3f}, RMS={rms:.3f} (tol ±{args.flux_tol:.2f})")
+            results["flux"] = okflux
+            all_passed = all_passed and okflux
+        except Exception as e:
+            print(f"   ✗ ERROR: {e}")
+            all_passed = False
     else:
-        print(f"   ⚠ SKIP: {msg}")
+        print("   ⚠ SKIP: Flux CSV not provided")
 
     print()
     print("=" * 60)
