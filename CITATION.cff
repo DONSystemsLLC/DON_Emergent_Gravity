@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite:"
+title: "DON Emergent Gravity — P2 Universality & Slip"
+version: "v1.2.0-P2"
+date-released: "2025-09-16"
+authors:
+  - family-names: Van Metre
+    given-names: Don
+    affiliation: DON Systems LLC
+repository-code: "https://github.com/DONSystemsLLC/DON_Emergent_Gravity"
+abstract: "Complete referee-ready validation suite for DON Emergent Gravity P2 phase, including first quantitative measurement of scale-dependent slip between weak lensing observations and emergent gravity dynamics using real KiDS W1 cluster data."
+keywords:
+  - emergent gravity
+  - weak lensing
+  - dark matter
+  - cosmology
+  - validation
+license: MIT

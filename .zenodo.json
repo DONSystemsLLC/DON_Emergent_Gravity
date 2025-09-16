@@ -1,0 +1,8 @@
+{
+  "title": "DON Emergent Gravity — P2 Universality & Slip",
+  "upload_type": "software",
+  "creators": [{"name": "Van Metre, Don"}, {"name": "DON Systems LLC"}],
+  "description": "Referee-gated P2 validation: convergence, window-independence, Helmholtz+flux, Kepler+EP, and KiDS W1 slip prototype.",
+  "license": "mit",
+  "notes": "Proof bundle at proofs/P2_RELEASE/bundle/P2_RELEASE_BUNDLE.tgz."
+}

@@ -18,6 +18,29 @@ wl-finalize:
 .PHONY: wl-gate
 wl-gate:
 	$(PY) -u scripts/accept_slip_gate.py
+
+.PHONY: p2-release
+p2-release: ## Run strict physics + WL gates, build report, and bundle proof artifacts
+	$(PY) -V
+	@echo "== Physics strict suite =="
+	$(MAKE) slope-window helmholtz kepler-fit ep-fit
+	$(MAKE) gate-strict GATE_FLUX_TOL=0.05
+	@echo "== Weak lensing finalize + referee gate =="
+	$(MAKE) wl-finalize
+	$(MAKE) wl-gate
+	@echo "== Paper kit / report =="
+	$(MAKE) paper-kit
+	$(MAKE) report-md
+	@echo "== Manifest + checksums =="
+	$(PY) -u scripts/build_manifest_p2.py --out proofs/P2_RELEASE/MANIFEST.yaml
+	cd proofs/P2_RELEASE && shasum -a 256 $$(git ls-files -z | xargs -0 -n1 echo 2>/dev/null || echo MANIFEST.yaml) > SHA256SUMS.txt || true
+	@echo "== Bundle =="
+	mkdir -p proofs/P2_RELEASE/bundle && \
+	tar -C proofs \
+	  -czf proofs/P2_RELEASE/bundle/P2_RELEASE_BUNDLE.tgz \
+	  P2_RELEASE \
+	  EMERGENT_GRAVITY_ORBITS_N320_L160
+	@echo "P2 release bundle at proofs/P2_RELEASE/bundle/P2_RELEASE_BUNDLE.tgz"
 	@echo "[wl-finalize] P2 CLENS slip prototype complete"
 
 wl-check:

@@ -1,0 +1,103 @@
+name: "DON Emergent Gravity \u2014 P2 Universality & Slip"
+timestamp: '2025-09-16T10:17:31Z'
+git:
+  commit: 648f932553c10318c66d78ab18b6509ac28db9e2
+  branch: main
+  remote: git@github.com:DONSystemsLLC/DON_Emergent_Gravity.git
+system:
+  python: Python 3.12.2
+  platform: macOS-15.6.1-arm64-arm-64bit
+  machine: arm64
+env:
+  pip_freeze:
+  - astropy==7.1.0
+  - astropy-iers-data==0.2025.9.8.0.36.17
+  - astroquery==0.4.10
+  - beautifulsoup4==4.13.5
+  - certifi==2025.8.3
+  - charset-normalizer==3.4.3
+  - contourpy==1.3.3
+  - cramjam==2.11.0
+  - cycler==0.12.1
+  - fastparquet==2024.11.0
+  - fonttools==4.59.2
+  - fsspec==2025.9.0
+  - html5lib==1.1
+  - idna==3.10
+  - jaraco.classes==3.4.0
+  - jaraco.context==6.0.1
+  - jaraco.functools==4.3.0
+  - jax==0.7.1
+  - jaxlib==0.7.1
+  - joblib==1.5.2
+  - keyring==25.6.0
+  - kiwisolver==1.4.9
+  - llvmlite==0.44.0
+  - matplotlib==3.10.6
+  - ml_dtypes==0.5.3
+  - more-itertools==10.8.0
+  - numba==0.61.2
+  - numpy==2.2.6
+  - opt_einsum==3.4.0
+  - packaging==25.0
+  - pandas==2.3.2
+  - pillow==11.3.0
+  - pyarrow==21.0.0
+  - pyerfa==2.0.1.5
+  - pyparsing==3.2.3
+  - python-dateutil==2.9.0.post0
+  - pytz==2025.2
+  - pyvo==1.7
+  - PyYAML==6.0.2
+  - requests==2.32.5
+  - scikit-learn==1.5.2
+  - scipy==1.16.2
+  - setuptools==80.9.0
+  - six==1.17.0
+  - soupsieve==2.8
+  - tabulate==0.9.0
+  - threadpoolctl==3.6.0
+  - tqdm==4.67.1
+  - typing_extensions==4.15.0
+  - tzdata==2025.2
+  - urllib3==2.5.0
+  - webencodings==0.5.1
+  - wheel==0.45.1
+acceptance:
+  physics_gate: gate-strict
+  wl_gate_referee:
+    overall_pass: true
+    metrics:
+      slip_mean: 0.11634751264862801
+      slip_median: 0.1306400150337175
+      slip_rms: 1.03937656878745
+      median_snr: 2.785647268567561
+      min_snr: 0.6091429960227382
+    gate:
+      nulls:
+        rot_mean_within_1sigma: true
+        x_mean_within_1sigma: true
+        rot_maxabs_le_3sigma: true
+        x_maxabs_le_3sigma: true
+      snr:
+        median_snr_ge_0p5: true
+        min_snr_ge_0p2: true
+      calibration:
+        rel_err_A_le_0p5: true
+        A_value: -0.4451871647659409
+        rel_err_A: 0.0
+      range:
+        all_slip_in_pm2: true
+artifacts:
+- figs/slope_window_heatmap.png
+- figs/helmholtz_checks.json
+- figs/kepler_fit.csv
+- figs/wl_slip_panels.png
+- outputs/CLENS_release/slip_analysis_final.csv
+- outputs/CLENS_release/slip_final_summary.json
+- outputs/CLENS_release/slip_acceptance_gate.json
+- outputs/CLENS_release/slip_gate_referee.json
+- proofs/EMERGENT_GRAVITY_ORBITS_N320_L160/validation_force_profile.csv
+- docs/REPORT.md
+notes: P2 bundle contains strict physics acceptance, WL slip with nulls + jackknife,
+  report, and provenance.

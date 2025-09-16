@@ -9,8 +9,6 @@ results/**/frames*/
 *.mp4
 *.tmp
 scratch/
-fields/
-outputs/
 working/
 data/
 sweeps/
@@ -25,3 +23,9 @@ sweeps/
 *.zip
 __pycache__/
 .DS_Store
+
+# Outputs - track key validation files
+outputs/**
+!outputs/**/*.png
+!outputs/**/*.csv
+!outputs/**/*.json
