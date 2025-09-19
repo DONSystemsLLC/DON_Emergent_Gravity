@@ -1,0 +1,431 @@
+  0B	./_quarantine
+  0B	./.venv/include
+  0B	./logs
+  0B	./outputs/CLENS_patch_sourceslices
+  0B	./venv/include
+4.0K	./.claude
+4.0K	./.git/info
+4.0K	./examples/validation
+4.0K	./sweeps/conv_grid_N160
+4.0K	./sweeps/conv_grid_N240
+4.0K	./sweeps/conv_grid_N400
+8.0K	./.pytest_cache/v
+8.0K	./.specify/memory
+8.0K	./.venv-spec/share
+8.0K	./.venv/share
+8.0K	./.vscode
+8.0K	./outputs/CLENS_patch_e2flip
+8.0K	./outputs/CLENS_patch_e2flip_rot
+8.0K	./outputs/CLENS_patch_focusZ
+8.0K	./outputs/CLENS_patch_rot
+8.0K	./outputs/CLENS_patch_sideA
+8.0K	./outputs/CLENS_patch_sideB
+8.0K	./outputs/CLENS_patch_sourceslices_focus
+8.0K	./outputs/CLENS_patch_sourceslices_side
+8.0K	./outputs/CLENS_patch_sourceslices_sideB
+8.0K	./outputs/CLENS_patch_zcut
+8.0K	./outputs/CLENS_random
+8.0K	./outputs/CLENS_random_01
+8.0K	./outputs/CLENS_random_02
+8.0K	./outputs/CLENS_random_03
+8.0K	./outputs/CLENS_random_04
+8.0K	./outputs/CLENS_random_05
+8.0K	./outputs/CLENS_random_06
+8.0K	./outputs/CLENS_random_07
+8.0K	./outputs/CLENS_random_08
+8.0K	./outputs/CLENS_random_09
+8.0K	./outputs/CLENS_random_10
+8.0K	./outputs/CLENS_random_11
+8.0K	./outputs/CLENS_random_12
+8.0K	./outputs/CLENS_random_13
+8.0K	./outputs/CLENS_random_14
+8.0K	./outputs/CLENS_random_15
+8.0K	./outputs/CLENS_random_16
+8.0K	./outputs/CLENS_random_17
+8.0K	./outputs/CLENS_random_18
+8.0K	./outputs/CLENS_random_19
+8.0K	./outputs/CLENS_random_20
+8.0K	./outputs/CLENS_random_21
+8.0K	./outputs/CLENS_random_22
+8.0K	./outputs/CLENS_random_23
+8.0K	./outputs/CLENS_random_24
+8.0K	./outputs/CLENS_random_25
+8.0K	./outputs/CLENS_random_26
+8.0K	./outputs/CLENS_random_27
+8.0K	./outputs/CLENS_random_28
+8.0K	./outputs/CLENS_random_29
+8.0K	./outputs/CLENS_random_30
+8.0K	./outputs/CLENS_random_31
+8.0K	./outputs/CLENS_random_32
+8.0K	./outputs/CLENS_random_33
+8.0K	./outputs/CLENS_random_34
+8.0K	./outputs/CLENS_random_35
+8.0K	./outputs/CLENS_random_36
+8.0K	./outputs/CLENS_random_37
+8.0K	./outputs/CLENS_random_38
+8.0K	./outputs/CLENS_random_39
+8.0K	./outputs/CLENS_random_40
+8.0K	./outputs/CLENS_random_41
+8.0K	./outputs/CLENS_random_42
+8.0K	./outputs/CLENS_random_43
+8.0K	./outputs/CLENS_random_44
+8.0K	./outputs/CLENS_random_45
+8.0K	./outputs/CLENS_random_46
+8.0K	./outputs/CLENS_random_47
+8.0K	./outputs/CLENS_random_48
+8.0K	./outputs/CLENS_random_49
+8.0K	./outputs/CLENS_random_50
+8.0K	./outputs/CLENS_random_e2flip
+8.0K	./outputs/CLENS_random_strat_01
+8.0K	./outputs/CLENS_random_strat_02
+8.0K	./outputs/CLENS_random_strat_03
+8.0K	./outputs/CLENS_random_strat_04
+8.0K	./outputs/CLENS_random_strat_05
+8.0K	./outputs/CLENS_random_strat_06
+8.0K	./outputs/CLENS_random_strat_07
+8.0K	./outputs/CLENS_random_strat_08
+8.0K	./outputs/CLENS_random_strat_09
+8.0K	./outputs/CLENS_random_strat_10
+8.0K	./outputs/CLENS_random_strat_11
+8.0K	./outputs/CLENS_random_strat_12
+8.0K	./outputs/CLENS_random_strat_13
+8.0K	./outputs/CLENS_random_strat_14
+8.0K	./outputs/CLENS_random_strat_15
+8.0K	./outputs/CLENS_random_strat_16
+8.0K	./outputs/CLENS_random_strat_17
+8.0K	./outputs/CLENS_random_strat_18
+8.0K	./outputs/CLENS_random_strat_19
+8.0K	./outputs/CLENS_random_strat_20
+8.0K	./outputs/CLENS_random_strat_21
+8.0K	./outputs/CLENS_random_strat_22
+8.0K	./outputs/CLENS_random_strat_23
+8.0K	./outputs/CLENS_random_strat_24
+8.0K	./outputs/CLENS_random_strat_25
+8.0K	./outputs/CLENS_random_strat_26
+8.0K	./outputs/CLENS_random_strat_27
+8.0K	./outputs/CLENS_random_strat_28
+8.0K	./outputs/CLENS_random_strat_29
+8.0K	./outputs/CLENS_random_strat_30
+8.0K	./outputs/CLENS_random_strat2_01
+8.0K	./outputs/CLENS_random_strat2_02
+8.0K	./outputs/CLENS_random_strat2_03
+8.0K	./outputs/CLENS_random_strat2_04
+8.0K	./outputs/CLENS_random_strat2_05
+8.0K	./outputs/CLENS_random_strat2_06
+8.0K	./outputs/CLENS_random_strat2_07
+8.0K	./outputs/CLENS_random_strat2_08
+8.0K	./outputs/CLENS_random_strat2_09
+8.0K	./outputs/CLENS_random_strat2_10
+8.0K	./outputs/CLENS_random_strat2_11
+8.0K	./outputs/CLENS_random_strat2_12
+8.0K	./outputs/CLENS_random_strat2_13
+8.0K	./outputs/CLENS_random_strat2_14
+8.0K	./outputs/CLENS_random_strat2_15
+8.0K	./outputs/CLENS_random_strat2_16
+8.0K	./outputs/CLENS_random_strat2_17
+8.0K	./outputs/CLENS_random_strat2_18
+8.0K	./outputs/CLENS_random_strat2_19
+8.0K	./outputs/CLENS_random_strat2_20
+8.0K	./outputs/CLENS_random_strat2_21
+8.0K	./outputs/CLENS_random_strat2_22
+8.0K	./outputs/CLENS_random_strat2_23
+8.0K	./outputs/CLENS_random_strat2_24
+8.0K	./outputs/CLENS_random_strat2_25
+8.0K	./outputs/CLENS_random_strat2_26
+8.0K	./outputs/CLENS_random_strat2_27
+8.0K	./outputs/CLENS_random_strat2_28
+8.0K	./outputs/CLENS_random_strat2_29
+8.0K	./outputs/CLENS_random_strat2_30
+8.0K	./outputs/CLENS_random_strat2_31
+8.0K	./outputs/CLENS_random_strat2_32
+8.0K	./outputs/CLENS_random_strat2_33
+8.0K	./outputs/CLENS_random_strat2_34
+8.0K	./outputs/CLENS_random_strat2_35
+8.0K	./outputs/CLENS_random_strat2_36
+8.0K	./outputs/CLENS_random_strat2_37
+8.0K	./outputs/CLENS_random_strat2_38
+8.0K	./outputs/CLENS_random_strat2_39
+8.0K	./outputs/CLENS_random_strat2_40
+8.0K	./outputs/CLENS_random_strat2_41
+8.0K	./outputs/CLENS_random_strat2_42
+8.0K	./outputs/CLENS_random_strat2_43
+8.0K	./outputs/CLENS_random_strat2_44
+8.0K	./outputs/CLENS_random_strat2_45
+8.0K	./outputs/CLENS_random_strat2_46
+8.0K	./outputs/CLENS_random_strat2_47
+8.0K	./outputs/CLENS_random_strat2_48
+8.0K	./outputs/CLENS_random_strat2_49
+8.0K	./outputs/CLENS_random_strat2_50
+8.0K	./outputs/CLENS_random_strat3_001
+8.0K	./outputs/CLENS_random_strat3_002
+8.0K	./outputs/CLENS_random_strat3_003
+8.0K	./outputs/CLENS_random_strat3_004
+8.0K	./outputs/CLENS_random_strat3_005
+8.0K	./outputs/CLENS_random_strat3_006
+8.0K	./outputs/CLENS_random_strat3_007
+8.0K	./outputs/CLENS_random_strat3_008
+8.0K	./outputs/CLENS_random_strat3_009
+8.0K	./outputs/CLENS_random_strat3_01
+8.0K	./outputs/CLENS_random_strat3_010
+8.0K	./outputs/CLENS_random_strat3_02
+8.0K	./outputs/JK_all
+8.0K	./outputs/JK_LOO_0
+8.0K	./outputs/JK_LOO_1
+8.0K	./outputs/JK_LOO_2
+8.0K	./outputs/JK_LOO_3
+8.0K	./profile_runs/N320_L160_dt0.0015625
+8.0K	./sweeps/conv_grid_N320
+8.0K	./sweeps/ep_m0.5
+8.0K	./sweeps/ep_m1.0
+8.0K	./sweeps/ep_m2.0
+8.0K	./sweeps/kepler_test
+8.0K	./sweeps/kepler_v0.26
+8.0K	./sweeps/kepler_v0.28
+8.0K	./sweeps/kepler_v0.30
+8.0K	./sweeps/kepler_v0.32
+8.0K	./sweeps/kepler_v0.34
+8.0K	./sweeps/test_load
+8.0K	./sweeps/test_robust
+8.0K	./sweeps/validation_orbit_strict
+8.0K	./venv/share
+ 12K	./.audit
+ 12K	./Lagrangian/.github
+ 12K	./proofs/EXP02_SPARC
+ 12K	./proofs/P2_RELEASE
+ 12K	./sweeps/smoke_vtheta_sweep
+ 16K	./.github/workflows
+ 16K	./cli/__pycache__
+ 16K	./P3_predictions/proofs
+ 16K	./src/don_emergent_gravity.egg-info
+ 16K	./validation_results_20250915_153648
+ 20K	./.pytest_cache
+ 20K	./docs
+ 20K	./sweeps/clean_validation
+ 24K	./.github
+ 24K	./cli
+ 24K	./profile_runs
+ 28K	./.specify/scripts
+ 28K	./.specify/templates
+ 28K	./examples/lambda_demo
+ 28K	./results/sweeps
+ 32K	./sweeps/N320_L160_vtheta_sweep
+ 40K	./.git/refs
+ 40K	./examples
+ 40K	./outputs/CLENS_patch_jk
+ 44K	./.git/logs
+ 60K	./.git/hooks
+ 60K	./outputs/CLENS
+ 64K	./Lagrangian/.specify
+ 64K	./specs/001-p3-black-hole
+ 68K	./P3_predictions/__pycache__
+ 72K	./.specify
+ 76K	./Lagrangian
+ 96K	./tests/__pycache__
+108K	./src/exp02_sparc
+116K	./venv/bin
+120K	./figures
+120K	./specs/002-exp02-rotation-curve
+124K	./outputs/CLENS_patch
+124K	./P3_predictions/models
+132K	./.venv-spec/bin
+144K	./tests
+148K	./outputs/orbits
+148K	./src/__pycache__
+156K	./.venv/bin
+168K	./figs
+184K	./specs
+220K	./sweeps
+248K	./outputs/SPARC
+256K	./results/proof_emergence_v1
+264K	./P3_predictions
+324K	./src
+428K	./proofs/EMERGENT_GRAVITY_ORBITS_N320_L160
+680K	./outputs/CLENS_release
+2.3M	./data/SPARC
+2.3M	./working/CLENS_patch_sourceslices_sideB
+3.0M	./results/clens_kids_W1_2025-09-14
+3.1M	./proofs/CLENS_KiDS_W1_Stacking
+3.1M	./working/CLENS_patch_sideB
+3.3M	./results
+3.8M	./proofs
+3.9M	./outputs
+4.4M	./working/CLENS_patch_sourceslices_side
+5.7M	./.git/objects
+5.9M	./.git
+6.7M	./working/CLENS_patch_sideA
+ 10M	./working/CLENS
+ 22M	./working/CLENS_patch_sourceslices_focus
+ 28M	./working/CLENS_patch_e2flip
+ 28M	./working/CLENS_patch_e2flip_rot
+ 28M	./working/CLENS_patch_jk_all
+ 28M	./working/CLENS_patch_jk_LOO_0
+ 28M	./working/CLENS_patch_jk_LOO_1
+ 28M	./working/CLENS_patch_jk_LOO_2
+ 28M	./working/CLENS_patch_jk_LOO_3
+ 28M	./working/CLENS_patch_sourceslices
+ 28M	./working/JK_all
+ 28M	./working/JK_LOO_0
+ 28M	./working/JK_LOO_1
+ 28M	./working/JK_LOO_2
+ 28M	./working/JK_LOO_3
+ 33M	./working/CLENS_patch_focusZ
+ 36M	./scripts
+ 36M	./scripts/data
+ 46M	./working/CLENS_random
+ 46M	./working/CLENS_random_e2flip
+ 68M	./working/CLENS_patch_rot
+ 68M	./working/CLENS_random_01
+ 68M	./working/CLENS_random_02
+ 68M	./working/CLENS_random_03
+ 68M	./working/CLENS_random_04
+ 68M	./working/CLENS_random_05
+ 68M	./working/CLENS_random_06
+ 68M	./working/CLENS_random_07
+ 68M	./working/CLENS_random_08
+ 68M	./working/CLENS_random_09
+ 68M	./working/CLENS_random_10
+ 68M	./working/CLENS_random_11
+ 68M	./working/CLENS_random_12
+ 68M	./working/CLENS_random_13
+ 68M	./working/CLENS_random_14
+ 68M	./working/CLENS_random_15
+ 68M	./working/CLENS_random_16
+ 68M	./working/CLENS_random_17
+ 68M	./working/CLENS_random_18
+ 68M	./working/CLENS_random_19
+ 68M	./working/CLENS_random_20
+ 68M	./working/CLENS_random_21
+ 68M	./working/CLENS_random_22
+ 68M	./working/CLENS_random_23
+ 68M	./working/CLENS_random_24
+ 68M	./working/CLENS_random_25
+ 68M	./working/CLENS_random_26
+ 68M	./working/CLENS_random_27
+ 68M	./working/CLENS_random_28
+ 68M	./working/CLENS_random_29
+ 68M	./working/CLENS_random_30
+ 68M	./working/CLENS_random_31
+ 68M	./working/CLENS_random_32
+ 68M	./working/CLENS_random_33
+ 68M	./working/CLENS_random_34
+ 68M	./working/CLENS_random_35
+ 68M	./working/CLENS_random_36
+ 68M	./working/CLENS_random_37
+ 68M	./working/CLENS_random_38
+ 68M	./working/CLENS_random_39
+ 68M	./working/CLENS_random_40
+ 68M	./working/CLENS_random_41
+ 68M	./working/CLENS_random_42
+ 68M	./working/CLENS_random_43
+ 68M	./working/CLENS_random_44
+ 68M	./working/CLENS_random_45
+ 68M	./working/CLENS_random_46
+ 68M	./working/CLENS_random_47
+ 68M	./working/CLENS_random_48
+ 68M	./working/CLENS_random_49
+ 68M	./working/CLENS_random_50
+ 68M	./working/CLENS_random_strat_01
+ 68M	./working/CLENS_random_strat_02
+ 68M	./working/CLENS_random_strat_03
+ 68M	./working/CLENS_random_strat_04
+ 68M	./working/CLENS_random_strat_05
+ 68M	./working/CLENS_random_strat_06
+ 68M	./working/CLENS_random_strat_07
+ 68M	./working/CLENS_random_strat_08
+ 68M	./working/CLENS_random_strat_09
+ 68M	./working/CLENS_random_strat_10
+ 68M	./working/CLENS_random_strat_11
+ 68M	./working/CLENS_random_strat_12
+ 68M	./working/CLENS_random_strat_13
+ 68M	./working/CLENS_random_strat_14
+ 68M	./working/CLENS_random_strat_15
+ 68M	./working/CLENS_random_strat_16
+ 68M	./working/CLENS_random_strat_17
+ 68M	./working/CLENS_random_strat_18
+ 68M	./working/CLENS_random_strat_19
+ 68M	./working/CLENS_random_strat_20
+ 68M	./working/CLENS_random_strat_21
+ 68M	./working/CLENS_random_strat_22
+ 68M	./working/CLENS_random_strat_23
+ 68M	./working/CLENS_random_strat_24
+ 68M	./working/CLENS_random_strat_25
+ 68M	./working/CLENS_random_strat_26
+ 68M	./working/CLENS_random_strat_27
+ 68M	./working/CLENS_random_strat_28
+ 68M	./working/CLENS_random_strat_29
+ 68M	./working/CLENS_random_strat_30
+ 68M	./working/CLENS_random_strat2_01
+ 68M	./working/CLENS_random_strat2_02
+ 68M	./working/CLENS_random_strat2_03
+ 68M	./working/CLENS_random_strat2_04
+ 68M	./working/CLENS_random_strat2_05
+ 68M	./working/CLENS_random_strat2_06
+ 68M	./working/CLENS_random_strat2_07
+ 68M	./working/CLENS_random_strat2_08
+ 68M	./working/CLENS_random_strat2_09
+ 68M	./working/CLENS_random_strat2_10
+ 68M	./working/CLENS_random_strat2_11
+ 68M	./working/CLENS_random_strat2_12
+ 68M	./working/CLENS_random_strat2_13
+ 68M	./working/CLENS_random_strat2_14
+ 68M	./working/CLENS_random_strat2_15
+ 68M	./working/CLENS_random_strat2_16
+ 68M	./working/CLENS_random_strat2_17
+ 68M	./working/CLENS_random_strat2_18
+ 68M	./working/CLENS_random_strat2_19
+ 68M	./working/CLENS_random_strat2_20
+ 68M	./working/CLENS_random_strat2_21
+ 68M	./working/CLENS_random_strat2_22
+ 68M	./working/CLENS_random_strat2_23
+ 68M	./working/CLENS_random_strat2_24
+ 68M	./working/CLENS_random_strat2_25
+ 68M	./working/CLENS_random_strat2_26
+ 68M	./working/CLENS_random_strat2_27
+ 68M	./working/CLENS_random_strat2_28
+ 68M	./working/CLENS_random_strat2_29
+ 68M	./working/CLENS_random_strat2_30
+ 68M	./working/CLENS_random_strat2_31
+ 68M	./working/CLENS_random_strat2_32
+ 68M	./working/CLENS_random_strat2_33
+ 68M	./working/CLENS_random_strat2_34
+ 68M	./working/CLENS_random_strat2_35
+ 68M	./working/CLENS_random_strat2_36
+ 68M	./working/CLENS_random_strat2_37
+ 68M	./working/CLENS_random_strat2_38
+ 68M	./working/CLENS_random_strat2_39
+ 68M	./working/CLENS_random_strat2_40
+ 68M	./working/CLENS_random_strat2_41
+ 68M	./working/CLENS_random_strat2_42
+ 68M	./working/CLENS_random_strat2_43
+ 68M	./working/CLENS_random_strat2_44
+ 68M	./working/CLENS_random_strat2_45
+ 68M	./working/CLENS_random_strat2_46
+ 68M	./working/CLENS_random_strat2_47
+ 68M	./working/CLENS_random_strat2_48
+ 68M	./working/CLENS_random_strat2_49
+ 68M	./working/CLENS_random_strat2_50
+ 68M	./working/CLENS_random_strat3_001
+ 68M	./working/CLENS_random_strat3_002
+ 68M	./working/CLENS_random_strat3_003
+ 68M	./working/CLENS_random_strat3_004
+ 68M	./working/CLENS_random_strat3_005
+ 68M	./working/CLENS_random_strat3_006
+ 68M	./working/CLENS_random_strat3_007
+ 68M	./working/CLENS_random_strat3_008
+ 68M	./working/CLENS_random_strat3_009
+ 68M	./working/CLENS_random_strat3_01
+ 68M	./working/CLENS_random_strat3_010
+ 68M	./working/CLENS_random_strat3_02
+ 69M	./working/CLENS_stack
+216M	./working/CLENS_patch
+668M	./data/CLENS
+670M	./data
+672M	./venv/lib
+673M	./.venv-spec
+673M	./.venv-spec/lib
+673M	./venv
+990M	./.venv/lib
+991M	./.venv
+3.9G	./fields
+ 10G	./working
+ 17G	.

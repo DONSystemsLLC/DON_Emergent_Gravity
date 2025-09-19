@@ -1,7 +1,7 @@
 name: "DON Emergent Gravity \u2014 P2 Universality & Slip"
-timestamp: '2025-09-16T10:17:31Z'
+timestamp: '2025-09-16T10:19:08Z'
 git:
-  commit: 648f932553c10318c66d78ab18b6509ac28db9e2
+  commit: a4b60eed6fb814c9023a3a6178f11c813c4eceef
   branch: main
   remote: git@github.com:DONSystemsLLC/DON_Emergent_Gravity.git
 system:
@@ -24,6 +24,7 @@ env:
   - fsspec==2025.9.0
   - html5lib==1.1
   - idna==3.10
+  - iniconfig==2.1.0
   - jaraco.classes==3.4.0
   - jaraco.context==6.0.1
   - jaraco.functools==4.3.0
@@ -42,9 +43,12 @@ env:
   - packaging==25.0
   - pandas==2.3.2
   - pillow==11.3.0
+  - pluggy==1.6.0
   - pyarrow==21.0.0
   - pyerfa==2.0.1.5
+  - Pygments==2.19.2
   - pyparsing==3.2.3
+  - pytest==8.4.2
   - python-dateutil==2.9.0.post0
   - pytz==2025.2
   - pyvo==1.7
