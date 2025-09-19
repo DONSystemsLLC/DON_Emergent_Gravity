@@ -1,0 +1,20 @@
+name: Bug report
+description: Report a reproducibility or runtime issue
+labels: ["bug"]
+body:
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      description: "OS, Python, CPU/GPU"
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: "Exact commands (copy/paste)"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs/error
+      render: shell
+
