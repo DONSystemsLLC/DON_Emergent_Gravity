@@ -5,6 +5,14 @@
 - A test particle under the DON readout orbits with small energy and angular-momentum drift.
 - **P2 — Universality & Slip**: Complete referee-ready validation suite with scale-dependent lensing/dynamics slip analysis using real KiDS W1 cluster data.
 
+## Docs & Experiments
+- Overview: `docs/theory_overview.md`
+- Reproduce: `docs/reproduce.md`
+- P1 Emergent kernel: `experiments/P1_Emergent_Kernel/` (proof: `proofs/EMERGENT_GRAVITY_ORBITS_N320_L160/`)
+- P1 Kepler orbits: `experiments/P1_Kepler_Orbits/`
+- P2 CLENS: `experiments/P2_Weak_Lensing/`
+- BH prediction: `experiments/BH_Prediction/`
+
 ## 🎯 P2 VALIDATION SUITE — COMPLETE & REFEREE-READY
 
 **Status**: ✅ **All deliverables implemented and validated**
@@ -115,4 +123,3 @@ Optional flags:
 --project_curl_free : one-shot Helmholtz projection of J for polished slope/fit.
 
 --orbit_from_potential : use a = −∇(κ c² μ) for a conservative, central force orbit.
-
