@@ -1,0 +1,52 @@
+name: Release Results Assets
+
+on:
+  push:
+    tags:
+      - 'v*'
+      - 'release-*'
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag to create/update release for'
+        required: false
+      release_name:
+        description: 'Release name (optional)'
+        required: false
+
+jobs:
+  package-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Prepare results archive
+        id: pack
+        run: |
+          set -euo pipefail
+          if [ -d results ]; then
+            echo "Packing results/ into results.zip"
+            zip -r results.zip results >/dev/null
+            echo "has_zip=true" >> $GITHUB_OUTPUT
+            echo "zip_path=results.zip" >> $GITHUB_OUTPUT
+          else
+            echo "No results/ directory present; skipping archive"
+            echo "has_zip=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create GitHub Release and upload assets
+        if: steps.pack.outputs.has_zip == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ steps.pack.outputs.zip_path }}
+          name: ${{ github.event.inputs.release_name || github.ref_name }}
+          tag_name: ${{ github.event.inputs.tag_name || github.ref_name }}
+          draft: true
+          prerelease: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

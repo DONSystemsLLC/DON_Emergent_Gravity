@@ -1,6 +1,11 @@
 name: Proof Bundle Hashes
 
 on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'proofs/**'
+      - 'tools/hash_bundle.py'
   pull_request:
     paths:
       - 'proofs/**'
