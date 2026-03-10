@@ -12,7 +12,11 @@ def validate_sign_convention():
     """Validate sign convention using rotation null tests"""
     
     # Load rotation null test results
-    rot_null_path = Path("outputs/CLENS_patch_rot/profile_focus.csv")
+    rot_null_candidates = [
+        Path("outputs/CLENS_patch_rot/profile_focus.csv"),
+        Path("results/clens_kids_W1_2025-09-14/profile_rot_focus.csv"),
+    ]
+    rot_null_path = next((p for p in rot_null_candidates if p.exists()), rot_null_candidates[0])
     if not rot_null_path.exists():
         print(f"ERROR: Rotation null test file not found: {rot_null_path}")
         return False

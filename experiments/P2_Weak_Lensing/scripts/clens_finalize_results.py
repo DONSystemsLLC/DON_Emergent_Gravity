@@ -10,6 +10,13 @@ Finalize KiDS W1 × Cluster stacking:
 import argparse, glob, os, pathlib
 import numpy as np, pandas as pd
 
+
+def first_existing(*candidates):
+    for c in candidates:
+        if c and os.path.exists(c):
+            return c
+    return candidates[0]
+
 def load_prof(p):
     d = pd.read_csv(p)
     R = 'R_Mpc' if 'R_Mpc' in d.columns else 'R'
@@ -113,6 +120,8 @@ def main():
     args = ap.parse_args()
     rlo, rhi = map(float, args.r_band.split(','))
 
+    args.focus = first_existing(args.focus, 'results/clens_kids_W1_2025-09-14/profile_focus.csv')
+    args.control = first_existing(args.control, 'results/clens_kids_W1_2025-09-14/profile_control.csv')
     dF, RF, gF = load_prof(args.focus)
     dC, RC, gC = load_prof(args.control)
     d_real = wbandmean(dF, RF, gF, rlo, rhi) - wbandmean(dC, RC, gC, rlo, rhi)
