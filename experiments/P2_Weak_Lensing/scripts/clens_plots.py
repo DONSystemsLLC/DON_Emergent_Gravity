@@ -13,6 +13,13 @@ import matplotlib.pyplot as plt
 
 OUTDIR = "outputs/CLENS_release"
 
+
+def first_existing(*candidates):
+    for c in candidates:
+        if c and os.path.exists(c):
+            return c
+    return candidates[0]
+
 def load_prof(p):
     """Load profile with flexible column naming"""
     if not os.path.exists(p):
@@ -161,9 +168,9 @@ def main():
     # Load main profiles
     profiles = {}
     profile_paths = {
-        'Focus': 'outputs/CLENS_patch/profile_focus.csv',
-        'Control': 'outputs/CLENS_patch/profile_control.csv',
-        'Rotated': 'outputs/CLENS_patch_rot/profile_focus.csv'
+        'Focus': first_existing('outputs/CLENS_patch/profile_focus.csv', 'results/clens_kids_W1_2025-09-14/profile_focus.csv'),
+        'Control': first_existing('outputs/CLENS_patch/profile_control.csv', 'results/clens_kids_W1_2025-09-14/profile_control.csv'),
+        'Rotated': first_existing('outputs/CLENS_patch_rot/profile_focus.csv', 'results/clens_kids_W1_2025-09-14/profile_rot_focus.csv')
     }
     
     for key, path in profile_paths.items():

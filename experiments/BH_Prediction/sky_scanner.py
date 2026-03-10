@@ -72,7 +72,7 @@ class DONFieldSkyScanner:
         # Import the real DON field computation
         import sys
         from pathlib import Path
-        sys.path.append(str(Path(__file__).parent.parent / "src"))
+        sys.path.append(str(Path(__file__).resolve().parents[2] / "src"))
         
         from don_emergent_collapse_3d import CollapseField3D
         

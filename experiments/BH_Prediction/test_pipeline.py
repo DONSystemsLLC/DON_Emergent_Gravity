@@ -4,15 +4,17 @@ P3 Black Hole Predictions Test Runner
 Tests all components of the prediction system.
 """
 
-import sys
-from pathlib import Path
+import os
+import pytest
 
-# Add P3_predictions to path
-sys.path.append(str(Path(__file__).parent))
+from .sky_scanner import DONFieldSkyScanner
+from .catalog_integration import CatalogIntegrator
+from .preregistration import PreRegistrationSystem
 
-from sky_scanner import DONFieldSkyScanner
-from catalog_integration import CatalogIntegrator
-from preregistration import PreRegistrationSystem
+pytestmark = pytest.mark.skipif(
+    os.environ.get('RUN_P3_INTEGRATION') != '1',
+    reason='P3 integration pipeline is computationally heavy; set RUN_P3_INTEGRATION=1 to run',
+)
 
 def test_full_prediction_pipeline():
     """Test the complete P3 prediction pipeline."""
